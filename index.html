@@ -4,597 +4,489 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>船模實驗室｜Ship Model Laboratory</title>
-  <meta name="description" content="國立臺灣大學工程科學及海洋工程學系船模實驗室，專注大型拖曳水槽、CFD、動作捕捉、PMM、螺旋槳試驗、阻力試驗與浮式平台運動量測。" />
-
   <style>
     :root {
-      --deep: #03111f;
-      --navy: #082b4f;
-      --blue: #0c6aa6;
-      --cyan: #62d6ff;
-      --gold: #d8a84f;
-      --light: #f3f7fb;
-      --ink: #102033;
-      --muted: #5d6b7a;
+      --navy: #0b2f57;
+      --deep: #061a30;
+      --blue: #0f5f9e;
+      --cyan: #5ac8fa;
+      --light: #f4f8fb;
+      --gray: #5b6773;
       --white: #ffffff;
-      --soft: #eaf1f7;
-      --line: rgba(16, 32, 51, 0.12);
-      --glass: rgba(255, 255, 255, 0.1);
-      --shadow: 0 24px 70px rgba(4, 22, 38, 0.18);
-      --radius: 30px;
+      --gold: #d7a84f;
+      --shadow: 0 18px 45px rgba(6, 26, 48, 0.18);
+      --radius: 24px;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Noto Sans TC", "Microsoft JhengHei", "Segoe UI", sans-serif;
-      color: var(--ink);
+      color: var(--deep);
       background: var(--light);
-      line-height: 1.75;
-      overflow-x: hidden;
+      line-height: 1.7;
     }
-    a { color: inherit; text-decoration: none; }
-    img { display: block; width: 100%; height: 100%; object-fit: cover; }
-    button { font-family: inherit; }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
     .navbar {
       position: fixed;
-      inset: 0 0 auto 0;
-      z-index: 50;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
       padding: 18px 7vw;
       display: flex;
       align-items: center;
       justify-content: space-between;
       color: var(--white);
-      background: linear-gradient(180deg, rgba(3,17,31,0.92), rgba(3,17,31,0));
-      transition: 0.25s ease;
+      background: linear-gradient(180deg, rgba(6, 26, 48, 0.9), rgba(6, 26, 48, 0));
+      transition: 0.3s ease;
     }
-    .navbar.scrolled {
-      background: rgba(3,17,31,0.92);
-      backdrop-filter: blur(14px);
-      box-shadow: 0 12px 32px rgba(0,0,0,.18);
-    }
+
     .brand {
-      display: flex;
-      flex-direction: column;
-      gap: 1px;
-      font-weight: 900;
+      font-weight: 800;
       letter-spacing: 0.08em;
-      line-height: 1.15;
+      font-size: 1.05rem;
     }
-    .brand small {
-      font-size: .72rem;
-      letter-spacing: .12em;
-      color: rgba(255,255,255,.68);
-      font-weight: 700;
+
+    .navlinks {
+      display: flex;
+      gap: 26px;
+      font-size: 0.95rem;
+      opacity: 0.95;
     }
-    .navlinks { display: flex; gap: 21px; font-size: 0.94rem; }
-    .navlinks a { opacity: 0.9; transition: .2s ease; }
-    .navlinks a:hover { color: var(--cyan); opacity: 1; }
-    .menu-btn {
-      display: none;
-      border: 0;
-      color: #fff;
-      background: rgba(255,255,255,.12);
-      padding: 10px 12px;
-      border-radius: 12px;
-      font-weight: 900;
-      cursor: pointer;
+
+    .navlinks a:hover {
+      color: var(--cyan);
     }
 
     .hero {
-      position: relative;
       min-height: 100vh;
-      color: var(--white);
-      overflow: hidden;
+      position: relative;
       display: flex;
       align-items: center;
-      padding: 120px 7vw 88px;
-      background: linear-gradient(105deg, rgba(3,17,31,0.86), rgba(3,17,31,0.42)), url("towing tank.jpeg") center/cover no-repeat;
+      padding: 120px 7vw 80px;
+      color: var(--white);
+      overflow: hidden;
+      background: linear-gradient(115deg, rgba(6, 26, 48, 0.86), rgba(11, 47, 87, 0.42)), url("towing tank.png") center/cover no-repeat;
     }
-    .hero-video {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.72;
-      filter: saturate(1.08) contrast(1.08);
-    }
-    .hero::before {
+
+    .hero::after {
       content: "";
       position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(105deg, rgba(3,17,31,0.92) 0%, rgba(3,17,31,0.62) 48%, rgba(3,17,31,0.28) 100%),
-        radial-gradient(circle at 82% 26%, rgba(98,214,255,0.28), transparent 34%);
-      z-index: 1;
+      bottom: -120px;
+      right: -120px;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(90, 200, 250, 0.28), rgba(90, 200, 250, 0));
     }
-    .hero-content { position: relative; z-index: 2; max-width: 1060px; }
+
+    .hero-content {
+      max-width: 860px;
+      position: relative;
+      z-index: 2;
+    }
+
     .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      padding: 8px 16px;
-      border: 1px solid rgba(255,255,255,0.28);
+      padding: 8px 14px;
+      border: 1px solid rgba(255,255,255,0.32);
       border-radius: 999px;
-      background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(10px);
-      font-size: 0.95rem;
-      margin-bottom: 22px;
-    }
-    .hero h1 {
-      font-size: clamp(3rem, 7vw, 7.2rem);
-      line-height: 1.02;
-      letter-spacing: -0.065em;
+      backdrop-filter: blur(8px);
+      background: rgba(255,255,255,0.08);
+      font-size: 0.92rem;
       margin-bottom: 24px;
     }
-    .hero h1 span { color: var(--cyan); }
-    .hero p {
-      max-width: 900px;
-      font-size: clamp(1.08rem, 2vw, 1.45rem);
-      color: rgba(255,255,255,0.88);
-      margin-bottom: 34px;
+
+    .hero h1 {
+      font-size: clamp(2.7rem, 6vw, 6.2rem);
+      line-height: 1.08;
+      margin-bottom: 24px;
+      letter-spacing: -0.04em;
     }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
+
+    .hero p {
+      font-size: clamp(1.08rem, 2vw, 1.45rem);
+      max-width: 760px;
+      color: rgba(255,255,255,0.88);
+      margin-bottom: 36px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       padding: 13px 22px;
       border-radius: 999px;
-      font-weight: 800;
-      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
-      cursor: pointer;
-      border: 0;
-    }
-    .btn-primary { background: var(--cyan); color: var(--deep); }
-    .btn-outline { color: var(--white); border: 1px solid rgba(255,255,255,0.38); background: rgba(255,255,255,0.08); }
-    .btn:hover { transform: translateY(-3px); box-shadow: 0 16px 35px rgba(0,0,0,.24); }
-    .video-toggle {
-      position: absolute;
-      z-index: 3;
-      right: 7vw;
-      bottom: 42px;
-      color: #fff;
-      border: 1px solid rgba(255,255,255,.32);
-      background: rgba(3,17,31,.52);
-      backdrop-filter: blur(12px);
-      padding: 10px 14px;
-      border-radius: 999px;
-      font-weight: 900;
-      cursor: pointer;
+      font-weight: 700;
+      transition: 0.25s ease;
     }
 
-    section { padding: 96px 7vw; }
-    .section-head { max-width: 950px; margin-bottom: 44px; }
+    .btn-primary {
+      background: var(--cyan);
+      color: var(--deep);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(90, 200, 250, 0.3);
+    }
+
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,0.42);
+      color: var(--white);
+      background: rgba(255,255,255,0.06);
+    }
+
+    section {
+      padding: 96px 7vw;
+    }
+
+    .section-head {
+      max-width: 860px;
+      margin-bottom: 42px;
+    }
+
     .tag {
       display: inline-block;
       color: var(--blue);
-      font-weight: 900;
-      letter-spacing: 0.14em;
+      font-weight: 800;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      font-size: .82rem;
       margin-bottom: 10px;
+      font-size: 0.85rem;
     }
+
     .section-head h2 {
-      font-size: clamp(2.05rem, 4vw, 3.65rem);
-      line-height: 1.15;
-      letter-spacing: -0.04em;
-      margin-bottom: 15px;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1.18;
+      margin-bottom: 16px;
+      letter-spacing: -0.03em;
     }
-    .section-head p { color: var(--muted); font-size: 1.08rem; }
 
-    .stats {
-      position: relative;
-      z-index: 3;
-      margin: -62px 7vw 0;
+    .section-head p {
+      color: var(--gray);
+      font-size: 1.08rem;
+    }
+
+    .grid-2 {
       display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 14px;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 42px;
+      align-items: center;
     }
-    .stat-card {
-      background: rgba(255,255,255,0.94);
-      border: 1px solid rgba(255,255,255,0.7);
-      box-shadow: var(--shadow);
-      border-radius: 22px;
-      padding: 22px;
-      backdrop-filter: blur(12px);
-      transition: .25s ease;
-      min-height: 132px;
-    }
-    .stat-card:hover { transform: translateY(-6px); }
-    .stat-card strong { display: block; font-size: 1.18rem; color: var(--navy); line-height: 1.2; margin-bottom: 8px; }
-    .stat-card span { color: var(--muted); font-weight: 700; font-size: .92rem; }
 
-    .grid-2 { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 40px; align-items: center; }
-    .card { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
-    .pi-photo { height: 560px; background: #fff; }
-    .pi-photo img { object-fit: contain; background: #fff; padding: 10px; }
-    .pi-info { padding: 42px; }
-    .pi-info h3 { font-size: 2.1rem; line-height: 1.2; margin-bottom: 6px; }
-    .pi-title { color: var(--blue); font-weight: 900; margin-bottom: 22px; }
-    .contact-list { display: grid; gap: 10px; margin: 24px 0; color: var(--muted); }
-    .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
-    .chip { padding: 8px 13px; border-radius: 999px; background: #eaf5ff; color: var(--navy); font-size: .92rem; font-weight: 800; }
-
-    .dark { background: var(--deep); color: var(--white); }
-    .dark .section-head p { color: rgba(255,255,255,.74); }
-    .dark .tag { color: var(--cyan); }
-    .facility-layout { display: grid; grid-template-columns: 1.16fr .84fr; gap: 32px; align-items: stretch; }
-    .facility-image { min-height: 560px; border-radius: var(--radius); overflow: hidden; box-shadow: 0 26px 65px rgba(0,0,0,.32); }
-    .facility-panel {
-      padding: 36px;
-      border-radius: var(--radius);
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.14);
-      backdrop-filter: blur(10px);
-    }
-    .facility-panel h3 { font-size: 1.65rem; line-height: 1.3; margin-bottom: 14px; }
-    .feature-list { display: grid; gap: 16px; margin-top: 26px; }
-    .feature { padding: 18px; border-radius: 18px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12); }
-    .feature strong { display: block; color: var(--cyan); margin-bottom: 4px; }
-
-    .filter-bar { display: flex; gap: 10px; flex-wrap: wrap; margin: -20px 0 34px; }
-    .filter-btn {
-      border: 1px solid rgba(8,43,79,.16);
-      background: #fff;
-      color: var(--navy);
-      padding: 10px 15px;
-      border-radius: 999px;
-      font-weight: 900;
-      cursor: pointer;
-      transition: .2s ease;
-    }
-    .filter-btn.active, .filter-btn:hover { background: var(--navy); color: #fff; }
-
-    .experiment-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
-    .experiment-card {
-      border-radius: var(--radius);
-      overflow: hidden;
+    .card {
       background: var(--white);
+      border-radius: var(--radius);
       box-shadow: var(--shadow);
-      transition: .25s ease;
-      position: relative;
+      overflow: hidden;
     }
-    .experiment-card:hover { transform: translateY(-8px); }
-    .experiment-card.hide { display: none; }
-    .experiment-card .photo { height: 260px; background: #dbe7ef; cursor: pointer; }
-    .experiment-card .content { padding: 24px; }
-    .experiment-card h3 { font-size: 1.25rem; margin-bottom: 8px; }
-    .experiment-card p { color: var(--muted); }
-    .metric-list {
+
+    .pi-photo {
+      height: 520px;
+      background: #dde8f0;
+    }
+
+    .pi-info {
+      padding: 42px;
+    }
+
+    .pi-info h3 {
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+
+    .pi-title {
+      color: var(--blue);
+      font-weight: 800;
+      margin-bottom: 22px;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 12px;
+      margin: 24px 0;
+      color: var(--gray);
+    }
+
+    .chips {
       display: flex;
       flex-wrap: wrap;
-      gap: 7px;
-      margin-top: 16px;
-    }
-    .metric-list span {
-      font-size: .78rem;
-      font-weight: 900;
-      color: var(--blue);
-      background: #edf7ff;
-      border-radius: 999px;
-      padding: 5px 9px;
+      gap: 10px;
+      margin-top: 22px;
     }
 
-    .workflow {
-      background: #fff;
+    .chip {
+      padding: 8px 13px;
+      background: #eef6fc;
+      color: var(--navy);
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.92rem;
     }
-    .workflow-wrap {
-      display: grid;
-      grid-template-columns: .86fr 1.14fr;
-      gap: 34px;
-      align-items: start;
-    }
-    .workflow-sticky {
-      position: sticky;
-      top: 110px;
-      padding: 34px;
-      border-radius: var(--radius);
-      background: linear-gradient(135deg, var(--navy), var(--deep));
-      color: #fff;
-      box-shadow: var(--shadow);
+
+    .facility {
+      background: var(--deep);
+      color: var(--white);
+      position: relative;
       overflow: hidden;
     }
-    .workflow-sticky::after {
-      content: "";
-      position: absolute;
-      width: 260px;
-      height: 260px;
-      right: -80px;
-      bottom: -80px;
-      background: radial-gradient(circle, rgba(98,214,255,.28), transparent 70%);
-    }
-    .workflow-sticky h2 {
-      position: relative;
-      z-index: 2;
-      font-size: clamp(2rem, 3.6vw, 3.2rem);
-      line-height: 1.12;
-      letter-spacing: -0.04em;
-      margin-bottom: 16px;
-    }
-    .workflow-sticky p {
-      position: relative;
-      z-index: 2;
-      color: rgba(255,255,255,.78);
-    }
-    .workflow-steps { display: grid; gap: 16px; }
-    .workflow-step {
-      padding: 28px;
-      border-radius: 24px;
-      background: var(--light);
-      border: 1px solid var(--line);
-      transition: .25s ease;
-      cursor: default;
-    }
-    .workflow-step:hover {
-      transform: translateX(8px);
-      background: #eaf5ff;
-      box-shadow: 0 14px 40px rgba(8,43,79,.1);
-    }
-    .workflow-step .num {
-      display: inline-block;
-      color: var(--blue);
-      font-weight: 950;
-      letter-spacing: .12em;
-      margin-bottom: 7px;
-    }
-    .workflow-step h3 { font-size: 1.35rem; margin-bottom: 6px; }
-    .workflow-step p { color: var(--muted); }
 
-    .research-matrix {
+    .facility .section-head p {
+      color: rgba(255,255,255,0.72);
+    }
+
+    .facility-layout {
       display: grid;
-      grid-template-columns: 1.15fr .85fr;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 34px;
+      align-items: stretch;
+    }
+
+    .facility-image {
+      min-height: 520px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.32);
+    }
+
+    .facility-panel {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: var(--radius);
+      padding: 36px;
+      backdrop-filter: blur(10px);
+    }
+
+    .facility-panel h3 {
+      font-size: 1.7rem;
+      margin-bottom: 18px;
+    }
+
+    .feature-list {
+      display: grid;
+      gap: 18px;
+      margin-top: 26px;
+    }
+
+    .feature {
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .feature strong {
+      display: block;
+      color: var(--cyan);
+      margin-bottom: 5px;
+    }
+
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
       gap: 22px;
     }
+
     .research-card {
-      padding: 30px;
-      border-radius: 28px;
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.12);
-      color: #fff;
-      min-height: 250px;
-      transition: .25s ease;
-      overflow: hidden;
-      position: relative;
-    }
-    .research-card.large { min-height: 522px; display: flex; flex-direction: column; justify-content: flex-end; }
-    .research-card:hover { transform: translateY(-6px); background: rgba(255,255,255,.12); }
-    .research-card .num { color: var(--cyan); font-weight: 950; letter-spacing: .14em; margin-bottom: 12px; display: block; }
-    .research-card h3 { font-size: clamp(1.45rem, 3vw, 2.35rem); line-height: 1.15; margin-bottom: 12px; }
-    .research-card p { color: rgba(255,255,255,.74); }
-    .research-side { display: grid; gap: 22px; }
-
-    .outreach { background: #eaf1f7; }
-    .outreach-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    .outreach-card { position: relative; min-height: 360px; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); cursor: pointer; }
-    .outreach-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 30%, rgba(3,17,31,.76)); }
-    .outreach-card .caption { position: absolute; z-index: 2; left: 22px; right: 22px; bottom: 20px; color: #fff; }
-    .outreach-card h3 { font-size: 1.45rem; margin-bottom: 4px; }
-
-    .life-carousel {
-      position: relative;
+      padding: 28px;
       border-radius: var(--radius);
+      background: var(--white);
+      box-shadow: var(--shadow);
+      min-height: 240px;
+    }
+
+    .research-card span {
+      display: inline-flex;
+      width: 46px;
+      height: 46px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 14px;
+      background: #eaf5ff;
+      color: var(--blue);
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
+
+    .research-card h3 {
+      font-size: 1.35rem;
+      margin-bottom: 12px;
+    }
+
+    .research-card p {
+      color: var(--gray);
+    }
+
+    .gallery {
+      background: #eaf1f7;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr 0.8fr;
+      grid-auto-rows: 260px;
+      gap: 18px;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 22px;
       overflow: hidden;
       box-shadow: var(--shadow);
       background: #d7e4ef;
     }
-    .life-track {
-      display: flex;
-      transition: transform .55s ease;
-      will-change: transform;
+
+    .gallery-item.large {
+      grid-row: span 2;
     }
-    .life-slide {
-      min-width: 100%;
-      height: clamp(360px, 58vw, 680px);
-      position: relative;
-      cursor: pointer;
-      background: #d7e4ef;
+
+    .gallery-item.wide {
+      grid-column: span 2;
     }
-    .life-slide::after {
-      content: "";
+
+    .gallery-caption {
       position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, transparent 45%, rgba(3,17,31,.78));
-      pointer-events: none;
-    }
-    .life-slide img { width: 100%; height: 100%; object-fit: cover; }
-    .life-caption {
-      position: absolute;
-      left: clamp(18px, 4vw, 42px);
-      right: clamp(18px, 4vw, 42px);
-      bottom: clamp(18px, 4vw, 36px);
-      z-index: 2;
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(6, 26, 48, 0.72);
       color: var(--white);
+      backdrop-filter: blur(8px);
+      font-weight: 700;
     }
-    .life-caption h3 {
-      font-size: clamp(1.5rem, 3vw, 2.4rem);
+
+    .cta {
+      background: linear-gradient(135deg, var(--navy), var(--deep));
+      color: var(--white);
+      text-align: center;
+    }
+
+    .cta h2 {
+      font-size: clamp(2rem, 4vw, 3.6rem);
       line-height: 1.15;
-      margin-bottom: 6px;
+      margin-bottom: 20px;
     }
-    .life-caption p { color: rgba(255,255,255,.82); font-weight: 700; }
-    .carousel-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 4;
-      width: 48px;
-      height: 48px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.4);
-      background: rgba(3,17,31,.56);
-      color: #fff;
-      font-size: 1.8rem;
-      cursor: pointer;
-      backdrop-filter: blur(10px);
-      transition: .2s ease;
+
+    .cta p {
+      color: rgba(255,255,255,0.78);
+      max-width: 760px;
+      margin: 0 auto 30px;
+      font-size: 1.08rem;
     }
-    .carousel-btn:hover { background: rgba(3,17,31,.86); transform: translateY(-50%) scale(1.06); }
-    .carousel-btn.prev { left: 18px; }
-    .carousel-btn.next { right: 18px; }
-    .carousel-dots {
-      position: absolute;
-      left: 50%;
-      bottom: 18px;
-      transform: translateX(-50%);
-      z-index: 5;
+
+    footer {
+      padding: 30px 7vw;
+      background: #03111f;
+      color: rgba(255,255,255,0.65);
       display: flex;
-      gap: 9px;
-      padding: 9px 12px;
-      border-radius: 999px;
-      background: rgba(3,17,31,.42);
-      backdrop-filter: blur(10px);
-    }
-    .carousel-dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 999px;
-      border: 0;
-      background: rgba(255,255,255,.48);
-      cursor: pointer;
-      transition: .2s ease;
-    }
-    .carousel-dot.active { width: 26px; background: var(--cyan); }
-    .carousel-counter {
-      position: absolute;
-      top: 18px;
-      right: 18px;
-      z-index: 5;
-      color: #fff;
-      background: rgba(3,17,31,.56);
-      border: 1px solid rgba(255,255,255,.22);
-      padding: 8px 12px;
-      border-radius: 999px;
-      font-weight: 900;
-      backdrop-filter: blur(10px);
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-size: 0.92rem;
     }
 
-    .cta { background: linear-gradient(135deg, var(--navy), var(--deep)); color: var(--white); text-align: center; }
-    .cta h2 { font-size: clamp(2rem, 4vw, 3.6rem); line-height: 1.15; margin-bottom: 18px; }
-    .cta p { color: rgba(255,255,255,.78); max-width: 780px; margin: 0 auto 30px; }
-    footer { padding: 30px 7vw; background: #020d18; color: rgba(255,255,255,.64); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; font-size: .92rem; }
-
-    .reveal { opacity: 0; transform: translateY(24px); transition: .75s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    .lightbox {
-      position: fixed;
-      inset: 0;
-      z-index: 100;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 32px;
-      background: rgba(0,0,0,.84);
-    }
-    .lightbox.show { display: flex; }
-    .lightbox img { max-width: min(1120px, 92vw); max-height: 82vh; width: auto; height: auto; border-radius: 18px; box-shadow: 0 30px 80px rgba(0,0,0,.45); }
-    .lightbox button { position: absolute; top: 22px; right: 28px; font-size: 2rem; color: #fff; background: transparent; border: 0; cursor: pointer; }
-    .back-top { position: fixed; right: 22px; bottom: 22px; z-index: 40; width: 46px; height: 46px; border-radius: 999px; border: 0; background: var(--navy); color: #fff; font-weight: 900; box-shadow: var(--shadow); cursor: pointer; display: none; }
-    .back-top.show { display: block; }
-
-    @media (max-width: 1180px) {
-      .stats { grid-template-columns: repeat(3, 1fr); }
-      .navlinks { gap: 14px; font-size: .88rem; }
-    }
-    @media (max-width: 1050px) {
-      .menu-btn { display: block; }
+    @media (max-width: 980px) {
       .navlinks {
-        position: absolute;
-        top: 70px;
-        left: 6vw;
-        right: 6vw;
         display: none;
-        flex-direction: column;
-        gap: 0;
-        border-radius: 18px;
-        overflow: hidden;
-        background: rgba(3,17,31,.96);
-        box-shadow: var(--shadow);
       }
-      .navlinks.open { display: flex; }
-      .navlinks a { padding: 14px 18px; border-top: 1px solid rgba(255,255,255,.08); }
-      .grid-2, .facility-layout, .outreach-grid, .workflow-wrap, .research-matrix { grid-template-columns: 1fr; }
-      .workflow-sticky { position: relative; top: 0; }
-      .experiment-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 680px) {
-      section { padding: 72px 6vw; }
-      .hero { padding: 110px 6vw 82px; }
-      .stats, .experiment-grid { grid-template-columns: 1fr; }
-      .stats { margin: -42px 6vw 0; }
-      .pi-photo, .facility-image { height: auto; min-height: 380px; }
-      .life-slide { height: 420px; }
-      .carousel-btn { width: 42px; height: 42px; font-size: 1.5rem; }
-      .video-toggle { right: 6vw; bottom: 22px; }
+
+      .grid-2,
+      .facility-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .research-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 260px;
+      }
+
+      .gallery-item.large,
+      .gallery-item.wide {
+        grid-row: span 1;
+        grid-column: span 1;
+      }
     }
   </style>
 </head>
-
 <body>
-  <nav class="navbar" id="navbar">
-    <div class="brand">
-      SHIP MODEL LAB
-      <small>NTU ESOE</small>
-    </div>
-    <button class="menu-btn" id="menuBtn" type="button">MENU</button>
-    <div class="navlinks" id="navlinks">
-      <a href="#about">首頁</a>
+  <nav class="navbar">
+    <div class="brand">SHIP MODEL LAB</div>
+    <div class="navlinks">
+      <a href="#about">實驗室</a>
       <a href="#pi">負責人</a>
       <a href="#facility">大型水槽</a>
-      <a href="#experiments">實驗能力</a>
-      <a href="#workflow">流程</a>
       <a href="#research">研究方向</a>
-      <a href="#outreach">教學推廣</a>
       <a href="#life">團隊生活</a>
       <a href="#contact">聯絡我們</a>
     </div>
   </nav>
 
   <header class="hero" id="about">
-    <video class="hero-video" id="heroVideo" autoplay muted loop playsinline poster="towing tank.jpeg">
-      <source src="hero-video.mp4" type="video/mp4" />
-      <source src="拖帶影片.mov" type="video/quicktime" />
-    </video>
-    <div class="hero-content reveal">
-      <div class="eyebrow">National Taiwan University｜Engineering Science and Ocean Engineering</div>
-      <h1>Experimental Hydrodynamics<br><span>for Ships & Offshore Systems</span></h1>
+    <div class="hero-content">
+      <div class="eyebrow">國立臺灣大學｜工程科學及海洋工程學系</div>
+      <h1>船模實驗室</h1>
       <p>
-        船模實驗室以大型拖曳水槽為核心，整合 CFD 計算、動作捕捉、PMM 操縱耐海試驗、螺旋槳 open water / CRP 試驗、阻力試驗與浮式平台運動量測，建立船舶與海洋工程系統的實驗驗證能力。
+        以大型拖曳水槽、拖車量測系統與流體力學分析為核心，進行船舶水動力、推進系統、耐海性能與船型設計相關研究。
       </p>
       <div class="hero-actions">
-        <a class="btn btn-primary" href="#experiments">探索實驗能力</a>
-        <a class="btn btn-outline" href="#workflow">查看研究流程</a>
+        <a class="btn btn-primary" href="#facility">探索實驗設備</a>
+        <a class="btn btn-outline" href="#contact">合作洽談</a>
       </div>
     </div>
-    <button class="video-toggle" id="videoToggle" type="button">Pause Video</button>
   </header>
 
-  <div class="stats reveal">
-    <div class="stat-card"><strong>CFD Simulation</strong><span>OpenFOAM / STAR-CCM+</span></div>
-    <div class="stat-card"><strong>Motion Capture</strong><span>Dynamic tracking system</span></div>
-    <div class="stat-card"><strong>PMM Test</strong><span>Maneuvering & seakeeping</span></div>
-    <div class="stat-card"><strong>Propeller Test</strong><span>Open water / CRP</span></div>
-    <div class="stat-card"><strong>Resistance Test</strong><span>Ship motion measurement</span></div>
-    <div class="stat-card"><strong>Floating Platform</strong><span>Offshore motion response</span></div>
-  </div>
-
-  <section id="pi" class="reveal">
+  <section id="pi">
     <div class="section-head">
       <span class="tag">Principal Investigator</span>
       <h2>實驗室負責人</h2>
-      <p>透過實驗量測、數值模擬與工程設計，建立船舶水動力與海洋工程系統之完整研究能力。</p>
+      <p>結合理論、數值模擬與水槽試驗，建立船舶與海洋工程系統之完整水動力分析能力。</p>
     </div>
+
     <div class="grid-2">
-      <div class="card pi-photo lightbox-source">
-        <img src="教授照片.png" alt="林宗岳助理教授照片" />
+      <div class="card pi-photo">
+        <img src="教授.png" alt="林宗岳助理教授照片" />
       </div>
       <div class="card pi-info">
         <h3>林宗岳 助理教授</h3>
         <div class="pi-title">國立臺灣大學博士</div>
         <p>
-          本實驗室聚焦於船舶水動力、幾何造型、船舶設計、計算流體力學與船模試驗。研究團隊以大型拖曳水槽為主要實驗平台，量測船體、推進器與海洋結構物在不同操作條件下的受力與運動反應。
+          本實驗室專注於船舶水動力、幾何造型、船舶設計、計算流體力學與船模試驗。研究團隊透過大型拖曳水槽與精密量測設備，探討船體、推進器與海洋結構物在流場中的性能表現。
         </p>
         <div class="contact-list">
           <div>📍 工海 211 室</div>
@@ -603,202 +495,115 @@
         </div>
         <div class="chips">
           <span class="chip">船舶水動力</span>
-          <span class="chip">船模試驗</span>
-          <span class="chip">推進系統</span>
-          <span class="chip">計算流體力學</span>
           <span class="chip">船舶設計</span>
+          <span class="chip">計算流體力學</span>
+          <span class="chip">船模試驗</span>
+          <span class="chip">幾何造型</span>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="dark reveal" id="facility">
+  <section class="facility" id="facility">
     <div class="section-head">
-      <span class="tag">Large Towing Tank</span>
+      <span class="tag">Research Facilities</span>
       <h2>大型拖曳水槽與拖車系統</h2>
-      <p>大型拖曳水槽提供可控制、可重複且可量測的實驗環境，是本實驗室進行船模試驗、阻力試驗、推進系統驗證與浮式平台運動量測的核心設施。</p>
+      <p>實驗室具備大型長水槽與拖曳車，可進行船模阻力、推進、操縱、耐海性與流場觀測等實驗。</p>
     </div>
+
     <div class="facility-layout">
-      <div class="facility-image lightbox-source">
-        <img src="towing tank.jpeg" alt="大型拖曳水槽" />
+      <div class="facility-image">
+        <img src="towing tank.png" alt="大型拖曳水槽與拖曳車" />
       </div>
       <div class="facility-panel">
-        <h3>以真實水槽實驗驗證設計與理論</h3>
+        <h3>以實驗驗證船舶水動力性能</h3>
         <p>
-          透過拖車系統控制模型與水體之相對運動，搭配力感測器、動作捕捉系統、螺槳量測儀與影像紀錄，可建立完整的船舶與海洋工程實驗資料。
+          拖曳水槽可提供可控且可重複的試驗環境，搭配拖車、量測儀器與資料擷取系統，能夠精確評估船模與推進系統在不同速度、姿態與配置下的受力表現。
         </p>
         <div class="feature-list">
-          <div class="feature"><strong>Controlled Model Testing</strong>以穩定速度與可重複試驗條件量測船模阻力、姿態與運動反應。</div>
-          <div class="feature"><strong>Integrated Measurement</strong>整合力、力矩、轉速、扭矩、影像與六自由度運動資料。</div>
-          <div class="feature"><strong>Validation Platform</strong>作為 CFD、理論模型與工程設計之實驗驗證基準。</div>
+          <div class="feature">
+            <strong>拖曳車 Towing Carriage</strong>
+            提供穩定試驗速度，建立船模與流場之相對運動條件。
+          </div>
+          <div class="feature">
+            <strong>模型試驗 Model Testing</strong>
+            可進行阻力、推進器、操縱與耐海性等水動力試驗。
+          </div>
+          <div class="feature">
+            <strong>資料分析 Data Analysis</strong>
+            透過力、力矩與流場量測，建立工程判讀與設計改善依據。
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="experiments" class="reveal">
+  <section id="research">
     <div class="section-head">
-      <span class="tag">Experimental Capabilities</span>
-      <h2>專業實驗與量測能力</h2>
-      <p>本實驗室的特色在於「以實驗為核心」，並結合數值計算與資料分析，支援船舶、推進器與海洋結構物之水動力性能評估。</p>
+      <span class="tag">Research Topics</span>
+      <h2>核心研究方向</h2>
+      <p>從船型設計到推進效率，從水槽試驗到數值模擬，建立可驗證、可應用的海洋工程研究方法。</p>
     </div>
 
-    <div class="filter-bar">
-      <button class="filter-btn active" data-filter="all">全部</button>
-      <button class="filter-btn" data-filter="cfd">CFD</button>
-      <button class="filter-btn" data-filter="tank">船模試驗</button>
-      <button class="filter-btn" data-filter="propulsion">推進系統</button>
-      <button class="filter-btn" data-filter="tracking">動作捕捉</button>
-      <button class="filter-btn" data-filter="offshore">離岸浮台</button>
-    </div>
-
-    <div class="experiment-grid">
-      <article class="experiment-card" data-category="cfd">
-        <div class="photo lightbox-source"><img src="IMG_1529.jpeg" alt="CFD 與實驗整合" /></div>
-        <div class="content">
-          <h3>CFD Simulation</h3>
-          <p>使用 OpenFOAM、STAR-CCM+ 等工具進行船體、推進器與自由液面流場分析，輔助實驗設計與結果驗證。</p>
-          <div class="metric-list"><span>OpenFOAM</span><span>STAR-CCM+</span><span>Free Surface</span><span>Validation</span></div>
-        </div>
-      </article>
-
-      <article class="experiment-card" data-category="tracking">
-        <div class="photo lightbox-source"><img src="qualysis.jpeg" alt="動作捕捉系統" /></div>
-        <div class="content">
-          <h3>Motion Capture System</h3>
-          <p>利用光學動作捕捉系統量測船模、浮台與海洋結構物之六自由度運動反應。</p>
-          <div class="metric-list"><span>6-DOF Motion</span><span>Trajectory</span><span>Dynamic Response</span></div>
-        </div>
-      </article>
-
-      <article class="experiment-card" data-category="tank">
-        <div class="photo lightbox-source"><img src="PMM.jpeg" alt="PMM 操縱與耐海試驗" /></div>
-        <div class="content">
-          <h3>PMM Maneuvering & Seakeeping Test</h3>
-          <p>透過平面運動機構進行船體操縱性與耐海性能試驗，分析橫向力、艏搖力矩與運動響應。</p>
-          <div class="metric-list"><span>Maneuvering</span><span>Seakeeping</span><span>Force</span><span>Moment</span></div>
-        </div>
-      </article>
-
-      <article class="experiment-card" data-category="propulsion">
-        <div class="photo lightbox-source"><img src="pow.png" alt="螺旋槳 open water 試驗" /></div>
-        <div class="content">
-          <h3>Propeller Open Water Test</h3>
-          <p>量測螺旋槳推力、扭矩與轉速，建立推力係數、扭矩係數與開放水效率曲線。</p>
-          <div class="metric-list"><span>Thrust</span><span>Torque</span><span>Efficiency</span><span>K-J Curve</span></div>
-        </div>
-      </article>
-
-      <article class="experiment-card" data-category="propulsion">
-        <div class="photo lightbox-source"><img src="pod.png" alt="POD 與 CRP 推進系統" /></div>
-        <div class="content">
-          <h3>CRP / POD Propulsion Test</h3>
-          <p>進行對轉螺旋槳與吊艙式推進系統試驗，評估推進效率、側向力、方位角效應與推進器交互作用。</p>
-          <div class="metric-list"><span>CRP</span><span>POD</span><span>Azimuth</span><span>Interaction</span></div>
-        </div>
-      </article>
-
-      <article class="experiment-card" data-category="tank">
-        <div class="photo lightbox-source"><img src="水槽合照.jpeg" alt="阻力試驗與船舶運動量測" /></div>
-        <div class="content">
-          <h3>Resistance & Ship Motion Measurement</h3>
-          <p>於拖曳水槽中量測船模阻力、姿態變化與運動反應，建立船型性能評估與設計改善依據。</p>
-          <div class="metric-list"><span>Resistance</span><span>Trim</span><span>Sinkage</span><span>Motion</span></div>
-        </div>
-      </article>
-
-      <article class="experiment-card" data-category="offshore">
-        <div class="photo lightbox-source"><img src="IMG_6769.jpeg" alt="水上浮式平台運動量測" /></div>
-        <div class="content">
-          <h3>Floating Platform Motion Measurement</h3>
-          <p>針對水上浮式平台與離岸結構物進行運動響應量測，分析波浪與外力作用下之穩定性與動態行為。</p>
-          <div class="metric-list"><span>Floating Body</span><span>Offshore</span><span>Motion Response</span><span>Stability</span></div>
-        </div>
-      </article>
-
-      <article class="experiment-card" data-category="outreach">
-        <div class="photo lightbox-source"><img src="營隊介紹3.jpeg" alt="實驗展示與教育推廣" /></div>
-        <div class="content">
-          <h3>Experiment Demonstration</h3>
-          <p>透過現場展示與解說，讓學生理解船舶工程、流體力學與模型試驗的實際應用。</p>
-          <div class="metric-list"><span>Education</span><span>Outreach</span><span>Demonstration</span></div>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <section class="workflow reveal" id="workflow">
-    <div class="workflow-wrap">
-      <div class="workflow-sticky">
-        <h2>From experiment design to engineering insight.</h2>
-        <p>我們將實驗規劃、水槽量測、資料處理與 CFD 驗證整合為完整流程，使每一次試驗都能轉化為可判讀、可比較、可回饋設計的工程資訊。</p>
+    <div class="research-grid">
+      <div class="research-card">
+        <span>01</span>
+        <h3>船舶水動力</h3>
+        <p>分析船體在不同航速與海況下的阻力、升沉、縱搖與流場特性。</p>
       </div>
-      <div class="workflow-steps">
-        <div class="workflow-step"><span class="num">01</span><h3>Experimental Planning</h3><p>規劃模型尺度、試驗條件、儀器配置與量測項目，確保實驗結果具有可重複性與比較性。</p></div>
-        <div class="workflow-step"><span class="num">02</span><h3>Tank Testing</h3><p>於大型拖曳水槽中進行阻力、操縱、推進、浮體運動與動作捕捉試驗。</p></div>
-        <div class="workflow-step"><span class="num">03</span><h3>Data Processing</h3><p>處理力、力矩、扭矩、轉速、影像與六自由度運動資料，建立完整實驗資料庫。</p></div>
-        <div class="workflow-step"><span class="num">04</span><h3>CFD Validation</h3><p>利用 CFD 與實驗結果相互驗證，分析流場機制並提升性能預測可信度。</p></div>
-        <div class="workflow-step"><span class="num">05</span><h3>Design Feedback</h3><p>將試驗與分析結果回饋船型、推進器配置與浮式平台設計，支援工程決策。</p></div>
+      <div class="research-card">
+        <span>02</span>
+        <h3>推進系統試驗</h3>
+        <p>研究螺槳、POD 推進器與對轉推進配置之效率、受力與交互作用。</p>
+      </div>
+      <div class="research-card">
+        <span>03</span>
+        <h3>計算流體力學</h3>
+        <p>結合 CFD 與水槽資料，提升船舶設計與性能預測的可靠度。</p>
       </div>
     </div>
   </section>
 
-  <section class="dark reveal" id="research">
-    <div class="section-head">
-      <span class="tag">Research Matrix</span>
-      <h2>研究方向與專業定位</h2>
-      <p>以水槽實驗為主軸，結合理論模型、CFD 與動態量測，形成船舶與海洋工程跨尺度研究能力。</p>
-    </div>
-    <div class="research-matrix">
-      <div class="research-card large">
-        <span class="num">01</span>
-        <h3>Experimental Hydrodynamics</h3>
-        <p>以大型拖曳水槽進行船體阻力、操縱、耐海、推進與浮體運動試驗，建立可直接支援工程設計的水動力資料。</p>
-      </div>
-      <div class="research-side">
-        <div class="research-card"><span class="num">02</span><h3>Computational Fluid Dynamics</h3><p>使用 OpenFOAM、STAR-CCM+ 建立流場模型，與實驗結果交互驗證。</p></div>
-        <div class="research-card"><span class="num">03</span><h3>Propulsion System Testing</h3><p>研究 open water、POD、CRP 與船體推進器交互作用。</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="outreach reveal" id="outreach">
-    <div class="section-head">
-      <span class="tag">Education & Outreach</span>
-      <h2>教學、營隊與實驗展示</h2>
-      <p>除了研究工作，實驗室也透過營隊與參訪活動，讓更多學生接觸船舶工程與水槽實驗。</p>
-    </div>
-    <div class="outreach-grid">
-      <div class="outreach-card lightbox-source"><img src="營隊介紹.png" alt="營隊介紹" /><div class="caption"><h3>水槽現場導覽</h3><p>介紹拖曳水槽、模型安裝與試驗流程。</p></div></div>
-      <div class="outreach-card lightbox-source"><img src="營隊介紹2.jpeg" alt="營隊實驗展示" /><div class="caption"><h3>實驗示範與討論</h3><p>將抽象的流體力學概念轉化為可觀察的實驗現象。</p></div></div>
-    </div>
-  </section>
-
-  <section id="life" class="reveal">
+  <section class="gallery" id="life">
     <div class="section-head">
       <span class="tag">Laboratory Life</span>
-      <h2>團隊生活與研究日常</h2>
-      <p>嚴謹的試驗之外，團隊也透過聚餐、討論與共同活動，建立良好的合作默契。</p>
+      <h2>團隊生活與實驗紀錄</h2>
+      <p>實驗室不只有嚴謹的研究，也有共同完成試驗、討論分析與聚會交流的團隊氛圍。</p>
     </div>
-    <div class="life-carousel" id="lifeCarousel">
-      <div class="life-track" id="lifeTrack">
-        <div class="life-slide lightbox-source"><img src="水槽合照.jpeg" alt="水槽試驗團隊合影" /><div class="life-caption"><h3>水槽試驗團隊合影</h3><p>共同完成模型安裝、試驗操作與資料整理。</p></div></div>
-        <div class="life-slide lightbox-source"><img src="聚餐1.jpeg" alt="實驗室聚餐" /><div class="life-caption"><h3>實驗室聚餐</h3><p>研究之外的交流，也是團隊默契的一部分。</p></div></div>
-        <div class="life-slide lightbox-source"><img src="聚餐2.jpeg" alt="團隊聚餐" /><div class="life-caption"><h3>團隊聚餐</h3><p>在討論與合作之外，留下共同回憶。</p></div></div>
-        <div class="life-slide lightbox-source"><img src="IMG_3646.jpeg" alt="畢業紀念拍貼" /><div class="life-caption"><h3>畢業與團隊回憶</h3><p>每一屆成員都是實驗室重要的一部分。</p></div></div>
-        <div class="life-slide lightbox-source"><img src="營隊介紹3.jpeg" alt="教學推廣活動" /><div class="life-caption"><h3>教學推廣活動</h3><p>讓更多學生接觸船舶工程與水槽實驗。</p></div></div>
-        <div class="life-slide lightbox-source"><img src="IMG_3497.jpeg" alt="團隊聚會" /><div class="life-caption"><h3>團隊聚會</h3><p>凝聚研究室成員間的合作與情感。</p></div></div>
+
+    <div class="gallery-grid">
+      <div class="gallery-item large">
+        <img src="IMG_8270.jpeg" alt="實驗室水槽前合照" />
+        <div class="gallery-caption">水槽試驗團隊合影</div>
       </div>
-      <button class="carousel-btn prev" id="lifePrev" type="button" aria-label="上一張">‹</button>
-      <button class="carousel-btn next" id="lifeNext" type="button" aria-label="下一張">›</button>
-      <div class="carousel-counter"><span id="lifeCurrent">1</span>/<span id="lifeTotal">6</span></div>
-      <div class="carousel-dots" id="lifeDots"></div>
+      <div class="gallery-item">
+        <img src="IMG_1529.jpeg" alt="船模試驗現場" />
+        <div class="gallery-caption">模型試驗現場</div>
+      </div>
+      <div class="gallery-item">
+        <img src="IMG_3497.jpeg" alt="實驗室聚餐" />
+        <div class="gallery-caption">實驗室聚餐</div>
+      </div>
+      <div class="gallery-item wide">
+        <img src="IMG_6772.jpeg" alt="團隊聚餐紀錄" />
+        <div class="gallery-caption">研究之外的團隊交流</div>
+      </div>
+      <div class="gallery-item">
+        <img src="IMG_3631.jpeg" alt="畢業拍貼紀念" />
+        <div class="gallery-caption">畢業紀念</div>
+      </div>
+      <div class="gallery-item">
+        <img src="IMG_3646.jpeg" alt="拍貼紀念照片" />
+        <div class="gallery-caption">珍貴回憶</div>
+      </div>
     </div>
   </section>
 
-  <section class="cta reveal" id="contact">
+  <section class="cta" id="contact">
     <h2>加入我們，一起探索船舶與海洋工程的未來</h2>
-    <p>歡迎對船舶水動力、船模試驗、推進系統、計算流體力學與海洋工程研究有興趣的同學與合作夥伴聯繫我們。</p>
+    <p>
+      歡迎對船舶水動力、船模試驗、推進系統、計算流體力學與海洋工程研究有興趣的同學與合作夥伴聯繫我們。
+    </p>
     <a class="btn btn-primary" href="mailto:tylin110@ntu.edu.tw">聯絡實驗室</a>
   </section>
 
@@ -806,129 +611,5 @@
     <div>© 2026 Ship Model Laboratory, National Taiwan University</div>
     <div>Department of Engineering Science and Ocean Engineering</div>
   </footer>
-
-  <div class="lightbox" id="lightbox">
-    <button type="button" id="lightboxClose" aria-label="Close">×</button>
-    <img id="lightboxImg" alt="preview" />
-  </div>
-  <button class="back-top" id="backTop" type="button">↑</button>
-
-  <script>
-    const navbar = document.getElementById('navbar');
-    const backTop = document.getElementById('backTop');
-    const menuBtn = document.getElementById('menuBtn');
-    const navlinks = document.getElementById('navlinks');
-    const heroVideo = document.getElementById('heroVideo');
-    const videoToggle = document.getElementById('videoToggle');
-
-    window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 40);
-      backTop.classList.toggle('show', window.scrollY > 500);
-    });
-
-    menuBtn.addEventListener('click', () => navlinks.classList.toggle('open'));
-    navlinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => navlinks.classList.remove('open'));
-    });
-    backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-    videoToggle.addEventListener('click', () => {
-      if (heroVideo.paused) {
-        heroVideo.play();
-        videoToggle.textContent = 'Pause Video';
-      } else {
-        heroVideo.pause();
-        videoToggle.textContent = 'Play Video';
-      }
-    });
-
-    const revealObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const experimentCards = document.querySelectorAll('.experiment-card');
-    filterButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterButtons.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const filter = btn.dataset.filter;
-        experimentCards.forEach(card => {
-          const show = filter === 'all' || card.dataset.category === filter;
-          card.classList.toggle('hide', !show);
-        });
-      });
-    });
-
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightboxImg');
-    const lightboxClose = document.getElementById('lightboxClose');
-    document.querySelectorAll('.lightbox-source img').forEach(img => {
-      img.addEventListener('click', () => {
-        lightboxImg.src = img.getAttribute('src');
-        lightboxImg.alt = img.getAttribute('alt') || 'preview';
-        lightbox.classList.add('show');
-      });
-    });
-    lightboxClose.addEventListener('click', () => lightbox.classList.remove('show'));
-    lightbox.addEventListener('click', e => { if (e.target === lightbox) lightbox.classList.remove('show'); });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') lightbox.classList.remove('show'); });
-
-    const lifeTrack = document.getElementById('lifeTrack');
-    const lifeSlides = document.querySelectorAll('.life-slide');
-    const lifePrev = document.getElementById('lifePrev');
-    const lifeNext = document.getElementById('lifeNext');
-    const lifeDots = document.getElementById('lifeDots');
-    const lifeCurrent = document.getElementById('lifeCurrent');
-    const lifeTotal = document.getElementById('lifeTotal');
-    const lifeCarousel = document.getElementById('lifeCarousel');
-    let lifeIndex = 0;
-    let lifeTimer;
-
-    lifeTotal.textContent = lifeSlides.length;
-    lifeSlides.forEach((_, index) => {
-      const dot = document.createElement('button');
-      dot.className = 'carousel-dot';
-      dot.type = 'button';
-      dot.setAttribute('aria-label', `切換到第 ${index + 1} 張`);
-      dot.addEventListener('click', () => {
-        showLifeSlide(index);
-        restartLifeAutoplay();
-      });
-      lifeDots.appendChild(dot);
-    });
-    const lifeDotButtons = document.querySelectorAll('.carousel-dot');
-
-    function showLifeSlide(index) {
-      lifeIndex = (index + lifeSlides.length) % lifeSlides.length;
-      lifeTrack.style.transform = `translateX(-${lifeIndex * 100}%)`;
-      lifeCurrent.textContent = lifeIndex + 1;
-      lifeDotButtons.forEach((dot, i) => dot.classList.toggle('active', i === lifeIndex));
-    }
-    function nextLifeSlide() { showLifeSlide(lifeIndex + 1); }
-    function prevLifeSlide() { showLifeSlide(lifeIndex - 1); }
-    function startLifeAutoplay() { lifeTimer = setInterval(nextLifeSlide, 4200); }
-    function stopLifeAutoplay() { clearInterval(lifeTimer); }
-    function restartLifeAutoplay() { stopLifeAutoplay(); startLifeAutoplay(); }
-
-    lifeNext.addEventListener('click', () => { nextLifeSlide(); restartLifeAutoplay(); });
-    lifePrev.addEventListener('click', () => { prevLifeSlide(); restartLifeAutoplay(); });
-    lifeCarousel.addEventListener('mouseenter', stopLifeAutoplay);
-    lifeCarousel.addEventListener('mouseleave', startLifeAutoplay);
-    showLifeSlide(0);
-    startLifeAutoplay();
-
-    document.querySelectorAll('img').forEach(img => {
-      img.addEventListener('error', () => {
-        img.style.objectFit = 'contain';
-        img.style.padding = '22px';
-        img.style.background = '#dfeaf2';
-        img.alt = '圖片檔名或路徑需要確認：' + img.getAttribute('src');
-      });
-    });
-  </script>
 </body>
 </html>
