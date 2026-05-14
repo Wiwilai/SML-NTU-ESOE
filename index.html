@@ -214,11 +214,102 @@
     .outreach-card .caption { position: absolute; z-index: 2; left: 22px; right: 22px; bottom: 20px; color: #fff; }
     .outreach-card h3 { font-size: 1.45rem; margin-bottom: 4px; }
 
-    .gallery-grid { display: grid; grid-template-columns: 1.18fr .82fr .82fr; grid-auto-rows: 250px; gap: 18px; }
-    .gallery-item { position: relative; border-radius: 22px; overflow: hidden; box-shadow: var(--shadow); background: #d7e4ef; cursor: pointer; }
-    .gallery-item.large { grid-row: span 2; }
-    .gallery-item.wide { grid-column: span 2; }
-    .gallery-caption { position: absolute; left: 16px; right: 16px; bottom: 16px; padding: 12px 14px; border-radius: 16px; background: rgba(4,22,38,.72); color: var(--white); backdrop-filter: blur(8px); font-weight: 800; }
+    .life-carousel {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      background: #d7e4ef;
+    }
+    .life-track {
+      display: flex;
+      transition: transform .55s ease;
+      will-change: transform;
+    }
+    .life-slide {
+      min-width: 100%;
+      height: clamp(360px, 58vw, 680px);
+      position: relative;
+      cursor: pointer;
+      background: #d7e4ef;
+    }
+    .life-slide::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 45%, rgba(4,22,38,.78));
+      pointer-events: none;
+    }
+    .life-slide img { width: 100%; height: 100%; object-fit: cover; }
+    .life-caption {
+      position: absolute;
+      left: clamp(18px, 4vw, 42px);
+      right: clamp(18px, 4vw, 42px);
+      bottom: clamp(18px, 4vw, 36px);
+      z-index: 2;
+      color: var(--white);
+    }
+    .life-caption h3 {
+      font-size: clamp(1.5rem, 3vw, 2.4rem);
+      line-height: 1.15;
+      margin-bottom: 6px;
+    }
+    .life-caption p { color: rgba(255,255,255,.82); font-weight: 700; }
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 4;
+      width: 48px;
+      height: 48px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.4);
+      background: rgba(4,22,38,.56);
+      color: #fff;
+      font-size: 1.8rem;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      transition: .2s ease;
+    }
+    .carousel-btn:hover { background: rgba(4,22,38,.86); transform: translateY(-50%) scale(1.06); }
+    .carousel-btn.prev { left: 18px; }
+    .carousel-btn.next { right: 18px; }
+    .carousel-dots {
+      position: absolute;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      z-index: 5;
+      display: flex;
+      gap: 9px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(4,22,38,.42);
+      backdrop-filter: blur(10px);
+    }
+    .carousel-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      border: 0;
+      background: rgba(255,255,255,.48);
+      cursor: pointer;
+      transition: .2s ease;
+    }
+    .carousel-dot.active { width: 26px; background: var(--cyan); }
+    .carousel-counter {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      z-index: 5;
+      color: #fff;
+      background: rgba(4,22,38,.56);
+      border: 1px solid rgba(255,255,255,.22);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-weight: 900;
+      backdrop-filter: blur(10px);
+    }
 
     .cta { background: linear-gradient(135deg, var(--navy), var(--deep)); color: var(--white); text-align: center; }
     .cta h2 { font-size: clamp(2rem, 4vw, 3.6rem); line-height: 1.15; margin-bottom: 18px; }
@@ -258,8 +349,8 @@
       .hero { padding: 110px 6vw 76px; }
       .stats, .experiment-grid, .research-grid, .gallery-grid { grid-template-columns: 1fr; }
       .stats { margin: -42px 6vw 0; }
-      .gallery-grid { grid-auto-rows: 250px; }
-      .gallery-item.large, .gallery-item.wide { grid-row: span 1; grid-column: span 1; }
+      .life-slide { height: 420px; }
+      .carousel-btn { width: 42px; height: 42px; font-size: 1.5rem; }
       .pi-photo, .facility-image { height: auto; min-height: 380px; }
     }
   </style>
@@ -402,13 +493,37 @@
       <h2>團隊生活與研究日常</h2>
       <p>嚴謹的試驗之外，團隊也透過聚餐、討論與共同活動，建立良好的合作默契。</p>
     </div>
-    <div class="gallery-grid">
-      <div class="gallery-item large lightbox-source"><img src="水槽合照.jpeg" alt="水槽前合照" /><div class="gallery-caption">水槽試驗團隊合影</div></div>
-      <div class="gallery-item lightbox-source"><img src="聚餐1.jpeg" alt="實驗室聚餐" /><div class="gallery-caption">實驗室聚餐</div></div>
-      <div class="gallery-item lightbox-source"><img src="聚餐2.jpeg" alt="團隊聚餐" /><div class="gallery-caption">研究之外的交流</div></div>
-      <div class="gallery-item wide lightbox-source"><img src="IMG_3646.jpeg" alt="畢業紀念拍貼" /><div class="gallery-caption">畢業與團隊回憶</div></div>
-      <div class="gallery-item lightbox-source"><img src="營隊介紹3.jpeg" alt="營隊介紹" /><div class="gallery-caption">教學推廣活動</div></div>
-      <div class="gallery-item lightbox-source"><img src="IMG_3497.jpeg" alt="餐廳聚會" /><div class="gallery-caption">團隊聚會</div></div>
+    <div class="life-carousel" id="lifeCarousel">
+      <div class="life-track" id="lifeTrack">
+        <div class="life-slide lightbox-source">
+          <img src="水槽合照.jpeg" alt="水槽試驗團隊合影" />
+          <div class="life-caption"><h3>水槽試驗團隊合影</h3><p>共同完成模型安裝、試驗操作與資料整理。</p></div>
+        </div>
+        <div class="life-slide lightbox-source">
+          <img src="聚餐1.jpeg" alt="實驗室聚餐" />
+          <div class="life-caption"><h3>實驗室聚餐</h3><p>研究之外的交流，也是團隊默契的一部分。</p></div>
+        </div>
+        <div class="life-slide lightbox-source">
+          <img src="聚餐2.jpeg" alt="團隊聚餐" />
+          <div class="life-caption"><h3>團隊聚餐</h3><p>在討論與合作之外，留下共同回憶。</p></div>
+        </div>
+        <div class="life-slide lightbox-source">
+          <img src="IMG_3646.jpeg" alt="畢業紀念拍貼" />
+          <div class="life-caption"><h3>畢業與團隊回憶</h3><p>每一屆成員都是實驗室重要的一部分。</p></div>
+        </div>
+        <div class="life-slide lightbox-source">
+          <img src="營隊介紹3.jpeg" alt="教學推廣活動" />
+          <div class="life-caption"><h3>教學推廣活動</h3><p>讓更多學生接觸船舶工程與水槽實驗。</p></div>
+        </div>
+        <div class="life-slide lightbox-source">
+          <img src="IMG_3497.jpeg" alt="團隊聚會" />
+          <div class="life-caption"><h3>團隊聚會</h3><p>凝聚研究室成員間的合作與情感。</p></div>
+        </div>
+      </div>
+      <button class="carousel-btn prev" id="lifePrev" type="button" aria-label="上一張">‹</button>
+      <button class="carousel-btn next" id="lifeNext" type="button" aria-label="下一張">›</button>
+      <div class="carousel-counter"><span id="lifeCurrent">1</span>/<span id="lifeTotal">6</span></div>
+      <div class="carousel-dots" id="lifeDots"></div>
     </div>
   </section>
 
@@ -477,6 +592,51 @@
         lightbox.classList.add('show');
       });
     });
+
+    const lifeTrack = document.getElementById('lifeTrack');
+    const lifeSlides = document.querySelectorAll('.life-slide');
+    const lifePrev = document.getElementById('lifePrev');
+    const lifeNext = document.getElementById('lifeNext');
+    const lifeDots = document.getElementById('lifeDots');
+    const lifeCurrent = document.getElementById('lifeCurrent');
+    const lifeTotal = document.getElementById('lifeTotal');
+    const lifeCarousel = document.getElementById('lifeCarousel');
+    let lifeIndex = 0;
+    let lifeTimer;
+
+    lifeTotal.textContent = lifeSlides.length;
+    lifeSlides.forEach((_, index) => {
+      const dot = document.createElement('button');
+      dot.className = 'carousel-dot';
+      dot.type = 'button';
+      dot.setAttribute('aria-label', `切換到第 ${index + 1} 張`);
+      dot.addEventListener('click', () => {
+        showLifeSlide(index);
+        restartLifeAutoplay();
+      });
+      lifeDots.appendChild(dot);
+    });
+    const lifeDotButtons = document.querySelectorAll('.carousel-dot');
+
+    function showLifeSlide(index) {
+      lifeIndex = (index + lifeSlides.length) % lifeSlides.length;
+      lifeTrack.style.transform = `translateX(-${lifeIndex * 100}%)`;
+      lifeCurrent.textContent = lifeIndex + 1;
+      lifeDotButtons.forEach((dot, i) => dot.classList.toggle('active', i === lifeIndex));
+    }
+
+    function nextLifeSlide() { showLifeSlide(lifeIndex + 1); }
+    function prevLifeSlide() { showLifeSlide(lifeIndex - 1); }
+    function startLifeAutoplay() { lifeTimer = setInterval(nextLifeSlide, 4200); }
+    function stopLifeAutoplay() { clearInterval(lifeTimer); }
+    function restartLifeAutoplay() { stopLifeAutoplay(); startLifeAutoplay(); }
+
+    lifeNext.addEventListener('click', () => { nextLifeSlide(); restartLifeAutoplay(); });
+    lifePrev.addEventListener('click', () => { prevLifeSlide(); restartLifeAutoplay(); });
+    lifeCarousel.addEventListener('mouseenter', stopLifeAutoplay);
+    lifeCarousel.addEventListener('mouseleave', startLifeAutoplay);
+    showLifeSlide(0);
+    startLifeAutoplay();
     lightboxClose.addEventListener('click', () => lightbox.classList.remove('show'));
     lightbox.addEventListener('click', e => { if (e.target === lightbox) lightbox.classList.remove('show'); });
     document.addEventListener('keydown', e => { if (e.key === 'Escape') lightbox.classList.remove('show'); });
