@@ -7,6 +7,173 @@
   <meta name="description" content="國立臺灣大學工程科學及海洋工程學系船模實驗室，具備長130公尺、寬8公尺、常用水深4公尺、最深可達8公尺大型拖曳水槽、最高速度4.9 m/s拖車與造波機，專注船模試驗、CFD、動作捕捉、PMM、螺旋槳試驗、阻力試驗與浮式平台運動量測。" />
 
   <style>
+    /* =========================
+   CAPABILITIES SECTION
+========================= */
+
+.capabilities-section {
+  padding: 120px 6%;
+  background:
+    linear-gradient(to bottom, #f5f7fb 0%, #edf2f8 100%);
+}
+
+.section-header {
+  max-width: 900px;
+  margin-bottom: 70px;
+}
+
+.section-eyebrow {
+  display: inline-block;
+  margin-bottom: 18px;
+  font-size: .9rem;
+  font-weight: 700;
+  letter-spacing: .18em;
+  color: #1f5f99;
+}
+
+.section-header h2 {
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  line-height: 1.05;
+  font-weight: 800;
+  color: #081a2f;
+  margin-bottom: 28px;
+}
+
+.section-description {
+  font-size: 1.15rem;
+  line-height: 1.9;
+  color: #5f6f82;
+  max-width: 820px;
+}
+
+/* =========================
+   GRID
+========================= */
+
+.capability-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 36px;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.capability-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 28px;
+  min-height: 520px;
+  background: #081a2f;
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.12);
+  transition: .5s ease;
+}
+
+.capability-card:hover {
+  transform: translateY(-10px);
+  box-shadow:
+    0 30px 80px rgba(0,0,0,.18);
+}
+
+.capability-image {
+  position: absolute;
+  inset: 0;
+}
+
+.capability-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .8s ease;
+}
+
+.capability-card:hover img {
+  transform: scale(1.08);
+}
+
+/* dark overlay */
+
+.capability-overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(5,15,30,.92) 5%,
+      rgba(5,15,30,.68) 45%,
+      rgba(5,15,30,.18) 100%
+    );
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.capability-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+
+  padding: 38px;
+  color: white;
+}
+
+.capability-tag {
+  display: inline-block;
+  margin-bottom: 18px;
+  padding: 8px 14px;
+
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 999px;
+
+  font-size: .72rem;
+  letter-spacing: .12em;
+  font-weight: 700;
+
+  backdrop-filter: blur(8px);
+}
+
+.capability-content h3 {
+  font-size: 1.8rem;
+  line-height: 1.25;
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+
+.capability-content p {
+  color: rgba(255,255,255,.78);
+  line-height: 1.8;
+  font-size: .98rem;
+  margin-bottom: 28px;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.capability-btn {
+  border: none;
+  background: white;
+  color: #081a2f;
+
+  padding: 12px 22px;
+  border-radius: 999px;
+
+  font-size: .92rem;
+  font-weight: 700;
+
+  cursor: pointer;
+  transition: .3s ease;
+}
+
+.capability-btn:hover {
+  background: #2a7de1;
+  color: white;
+}
     :root {
       --deep: #020b14;
       --navy: #061a30;
@@ -975,8 +1142,8 @@ button.feature:hover {
 </div>
   </div>
   
-</section>
 <section class="capabilities-section" id="capabilities">
+
   <div class="section-header">
     <span class="section-eyebrow">EXPERIMENTAL CAPABILITIES</span>
 
@@ -984,9 +1151,9 @@ button.feature:hover {
 
     <p class="section-description">
       本實驗室具備完整之海洋工程實驗與數值分析能力，
-      涵蓋船舶操縱性、推進性能、水動力分析與模型姿態量測。
-      結合大型拖曳水槽、推進器量測系統、動態捕捉技術與高階 CFD 模擬平台，
-      可進行船舶、推進器及離岸浮式結構之整合性研究與驗證。
+      涵蓋船舶操縱性、推進性能、水動力分析與模型姿態量測，
+      並結合大型拖曳水槽、推進器量測系統、動態捕捉技術與高階 CFD 平台，
+      提供船舶與離岸工程之整合研究與驗證能力。
     </p>
   </div>
 
@@ -998,17 +1165,21 @@ button.feature:hover {
         <img src="PMM.jpeg" alt="PMM 操縱性拘束試驗機構">
       </div>
 
+      <div class="capability-overlay"></div>
+
       <div class="capability-content">
         <span class="capability-tag">MANEUVERING TEST</span>
 
         <h3>PMM 操縱性拘束試驗系統</h3>
 
         <p>
-          配備 Planar Motion Mechanism（PMM）拘束試驗機構，
-          可執行 sway、yaw 與組合運動測試，
-          用於分析船舶操縱性水動力係數與運動響應特性，
-          支援操縱模擬與數值模型驗證。
+          執行船舶 sway、yaw 與拘束運動試驗，
+          建立操縱性水動力係數與運動響應特性。
         </p>
+
+        <button class="capability-btn">
+          Explore System
+        </button>
       </div>
     </article>
 
@@ -1018,17 +1189,21 @@ button.feature:hover {
         <img src="pow.png" alt="POW 螺旋槳開水試驗">
       </div>
 
+      <div class="capability-overlay"></div>
+
       <div class="capability-content">
         <span class="capability-tag">PROPULSION TEST</span>
 
         <h3>POW 螺旋槳 Open Water 試驗</h3>
 
         <p>
-          建立標準螺旋槳 Open Water Test（POW）量測能力，
-          可量測推力、扭矩與開水效率特性，
-          並建立推進器之 KT、KQ 與效率曲線，
-          作為推進性能分析與推進系統設計之基礎。
+          量測推力、扭矩與開水效率，
+          建立推進器 KT、KQ 與效率特性曲線。
         </p>
+
+        <button class="capability-btn">
+          Explore System
+        </button>
       </div>
     </article>
 
@@ -1038,17 +1213,21 @@ button.feature:hover {
         <img src="pod.png" alt="POD 艙式推進器系統">
       </div>
 
+      <div class="capability-overlay"></div>
+
       <div class="capability-content">
         <span class="capability-tag">AZIMUTH PROPULSOR</span>
 
         <h3>POD 艙式推進器水動力分析</h3>
 
         <p>
-          配備可方位旋轉之 POD 艙式推進器系統，
-          可進行不同方位角下之推進性能、
-          側向力與水動力特性量測，
-          應用於高操縱性船舶與新型推進系統研究。
+          分析不同方位角下之推進性能、
+          側向力與操縱性水動力特性。
         </p>
+
+        <button class="capability-btn">
+          Explore System
+        </button>
       </div>
     </article>
 
@@ -1058,17 +1237,21 @@ button.feature:hover {
         <img src="qualysistank.jpeg" alt="Qualisys 動態捕捉系統">
       </div>
 
+      <div class="capability-overlay"></div>
+
       <div class="capability-content">
         <span class="capability-tag">MOTION CAPTURE</span>
 
         <h3>Qualisys 動態捕捉量測</h3>
 
         <p>
-          採用 Qualisys 高精度動態捕捉系統，
-          可即時量測模型之六自由度運動姿態，
-          包含位移、姿態角與動態響應，
-          應用於船模運動、波浪響應與浮式平台研究。
+          即時量測模型六自由度運動姿態，
+          應用於波浪響應與浮式平台分析。
         </p>
+
+        <button class="capability-btn">
+          Explore System
+        </button>
       </div>
     </article>
 
@@ -1078,21 +1261,26 @@ button.feature:hover {
         <img src="cfd.png" alt="CFD 數值模擬">
       </div>
 
+      <div class="capability-overlay"></div>
+
       <div class="capability-content">
         <span class="capability-tag">CFD SIMULATION</span>
 
         <h3>CFD 數值流場分析</h3>
 
         <p>
-          具備完整 Computational Fluid Dynamics（CFD）分析能力，
-          使用 STAR-CCM+ 與 OpenFOAM 建立數值模擬流程，
-          可進行自由液面、多相流、推進器流場與船體水動力分析，
-          結合實驗結果進行交互驗證。
+          使用 STAR-CCM+ 與 OpenFOAM，
+          建立自由液面與推進器流場分析能力。
         </p>
+
+        <button class="capability-btn">
+          Explore System
+        </button>
       </div>
     </article>
 
   </div>
+
 </section>
 
   <section class="workflow reveal" id="workflow">
