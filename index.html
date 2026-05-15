@@ -974,98 +974,126 @@ button.feature:hover {
   </div>
 </div>
   </div>
+  
 </section>
+<section class="capabilities-section" id="capabilities">
+  <div class="section-header">
+    <span class="section-eyebrow">EXPERIMENTAL CAPABILITIES</span>
 
-  <section id="experiments" class="reveal">
-    <div class="section-head">
-      <span class="tag">Experimental Capabilities</span>
-      <h2>專業實驗與量測能力</h2>
-      <p>從數值模擬到水槽驗證，從單一船模到推進器與浮式平台，本實驗室建立完整的海洋工程實驗能力。</p>
-    </div>
+    <h2>專業實驗與量測能力</h2>
 
-    <div class="filter-bar">
-      <button class="filter-btn active" data-filter="all">全部</button>
-      <button class="filter-btn" data-filter="cfd">CFD</button>
-      <button class="filter-btn" data-filter="tank">船模試驗</button>
-      <button class="filter-btn" data-filter="propulsion">推進系統</button>
-      <button class="filter-btn" data-filter="tracking">動作捕捉</button>
-      <button class="filter-btn" data-filter="offshore">浮式平台</button>
-    </div>
-    
-    <div class="experiment-grid">
-      <article class="experiment-card" data-category="cfd">
-        <div class="photo lightbox-source"><img src="IMG_1529.jpeg" alt="CFD 與實驗整合" /></div>
-        <div class="content">
-          <h3>CFD 計算與流場分析</h3>
-          <p>使用 OpenFOAM、STAR-CCM+ 等工具進行船體、推進器與自由液面流場分析，輔助實驗設計與結果驗證。</p>
-          <div class="metric-list"><span>OpenFOAM</span><span>STAR-CCM+</span><span>自由液面</span><span>實驗驗證</span></div>
-        </div>
-      </article>
+    <p class="section-description">
+      本實驗室具備完整之海洋工程實驗與數值分析能力，
+      涵蓋船舶操縱性、推進性能、水動力分析與模型姿態量測。
+      結合大型拖曳水槽、推進器量測系統、動態捕捉技術與高階 CFD 模擬平台，
+      可進行船舶、推進器及離岸浮式結構之整合性研究與驗證。
+    </p>
+  </div>
 
-      <article class="experiment-card" data-category="tracking">
-        <div class="photo lightbox-source"><img src="qualysis.jpeg" alt="動作捕捉系統" /></div>
-        <div class="content">
-          <h3>動作捕捉系統</h3>
-          <p>以拖車平台上的光學追蹤系統記錄船模、浮台與海洋結構物之六自由度運動，用於姿態、軌跡與動態反應分析。</p>
-          <div class="metric-list"><span>6-DOF</span><span>姿態量測</span><span>軌跡追蹤</span><span>動態反應</span></div>
-        </div>
-      </article>
+  <div class="capability-grid">
 
-      <article class="experiment-card" data-category="tank">
-        <div class="photo lightbox-source"><img src="PMM.jpeg" alt="PMM 操縱與耐海試驗" /></div>
-        <div class="content">
-          <h3>PMM 操縱與耐海試驗</h3>
-          <p>透過平面運動機構進行船體操縱性與耐海性能研究，分析橫向力、艏搖力矩與波浪中運動反應。</p>
-          <div class="metric-list"><span>操縱性</span><span>耐海性</span><span>力與力矩</span><span>運動響應</span></div>
-        </div>
-      </article>
+    <!-- PMM -->
+    <article class="capability-card">
+      <div class="capability-image">
+        <img src="PMM.jpeg" alt="PMM 操縱性拘束試驗機構">
+      </div>
 
-      <article class="experiment-card" data-category="propulsion">
-        <div class="photo lightbox-source"><img src="pow.png" alt="螺旋槳 open water 試驗" /></div>
-        <div class="content">
-          <h3>螺旋槳 Open Water 試驗</h3>
-          <p>量測螺旋槳推力、扭矩與轉速，建立推力係數、扭矩係數與開放水效率曲線。</p>
-          <div class="metric-list"><span>推力</span><span>扭矩</span><span>效率</span><span>K-J 曲線</span></div>
-        </div>
-      </article>
+      <div class="capability-content">
+        <span class="capability-tag">MANEUVERING TEST</span>
 
-      <article class="experiment-card" data-category="propulsion">
-        <div class="photo lightbox-source"><img src="pod.png" alt="POD 與 CRP 推進系統" /></div>
-        <div class="content">
-          <h3>CRP 與 POD 推進系統</h3>
-          <p>進行對轉螺旋槳與吊艙式推進系統試驗，評估推進效率、側向力、方位角效應與推進器交互作用。</p>
-          <div class="metric-list"><span>CRP</span><span>POD</span><span>方位角</span><span>交互作用</span></div>
-        </div>
-      </article>
+        <h3>PMM 操縱性拘束試驗系統</h3>
 
-      <article class="experiment-card" data-category="tank">
-        <div class="photo lightbox-source"><img src="水槽合照.jpeg" alt="阻力試驗與船舶運動量測" /></div>
-        <div class="content">
-          <h3>阻力試驗與船舶運動量測</h3>
-          <p>於拖曳水槽中量測船模阻力、姿態變化與運動反應，建立船型性能評估與設計改善依據。</p>
-          <div class="metric-list"><span>阻力</span><span>姿態</span><span>升沉</span><span>俯仰</span></div>
-        </div>
-      </article>
+        <p>
+          配備 Planar Motion Mechanism（PMM）拘束試驗機構，
+          可執行 sway、yaw 與組合運動測試，
+          用於分析船舶操縱性水動力係數與運動響應特性，
+          支援操縱模擬與數值模型驗證。
+        </p>
+      </div>
+    </article>
 
-      <article class="experiment-card" data-category="offshore">
-        <div class="photo lightbox-source"><img src="IMG_6769.jpeg" alt="水上浮式平台運動量測" /></div>
-        <div class="content">
-          <h3>水上浮式平台運動量測</h3>
-          <p>針對水上浮式平台與離岸結構物進行運動響應量測，分析波浪與外力作用下之穩定性與動態行為。</p>
-          <div class="metric-list"><span>浮體運動</span><span>離岸平台</span><span>波浪響應</span><span>穩定性</span></div>
-        </div>
-      </article>
+    <!-- POW -->
+    <article class="capability-card">
+      <div class="capability-image">
+        <img src="pow.png" alt="POW 螺旋槳開水試驗">
+      </div>
 
-      <article class="experiment-card" data-category="tank">
-        <div class="photo lightbox-source"><img src="營隊介紹3.jpeg" alt="實驗展示與教育推廣" /></div>
-        <div class="content">
-          <h3>實驗展示與教學應用</h3>
-          <p>透過水槽展示與模型操作，讓學生理解船舶工程、流體力學與實驗量測的實際應用。</p>
-          <div class="metric-list"><span>教學展示</span><span>模型操作</span><span>工程實作</span></div>
-        </div>
-      </article>
-    </div>
-  </section>
+      <div class="capability-content">
+        <span class="capability-tag">PROPULSION TEST</span>
+
+        <h3>POW 螺旋槳 Open Water 試驗</h3>
+
+        <p>
+          建立標準螺旋槳 Open Water Test（POW）量測能力，
+          可量測推力、扭矩與開水效率特性，
+          並建立推進器之 KT、KQ 與效率曲線，
+          作為推進性能分析與推進系統設計之基礎。
+        </p>
+      </div>
+    </article>
+
+    <!-- POD -->
+    <article class="capability-card">
+      <div class="capability-image">
+        <img src="pod.png" alt="POD 艙式推進器系統">
+      </div>
+
+      <div class="capability-content">
+        <span class="capability-tag">AZIMUTH PROPULSOR</span>
+
+        <h3>POD 艙式推進器水動力分析</h3>
+
+        <p>
+          配備可方位旋轉之 POD 艙式推進器系統，
+          可進行不同方位角下之推進性能、
+          側向力與水動力特性量測，
+          應用於高操縱性船舶與新型推進系統研究。
+        </p>
+      </div>
+    </article>
+
+    <!-- Qualisys -->
+    <article class="capability-card">
+      <div class="capability-image">
+        <img src="qualysistank.jpeg" alt="Qualisys 動態捕捉系統">
+      </div>
+
+      <div class="capability-content">
+        <span class="capability-tag">MOTION CAPTURE</span>
+
+        <h3>Qualisys 動態捕捉量測</h3>
+
+        <p>
+          採用 Qualisys 高精度動態捕捉系統，
+          可即時量測模型之六自由度運動姿態，
+          包含位移、姿態角與動態響應，
+          應用於船模運動、波浪響應與浮式平台研究。
+        </p>
+      </div>
+    </article>
+
+    <!-- CFD -->
+    <article class="capability-card">
+      <div class="capability-image">
+        <img src="cfd.png" alt="CFD 數值模擬">
+      </div>
+
+      <div class="capability-content">
+        <span class="capability-tag">CFD SIMULATION</span>
+
+        <h3>CFD 數值流場分析</h3>
+
+        <p>
+          具備完整 Computational Fluid Dynamics（CFD）分析能力，
+          使用 STAR-CCM+ 與 OpenFOAM 建立數值模擬流程，
+          可進行自由液面、多相流、推進器流場與船體水動力分析，
+          結合實驗結果進行交互驗證。
+        </p>
+      </div>
+    </article>
+
+  </div>
+</section>
 
   <section class="workflow reveal" id="workflow">
     <div class="workflow-wrap">
