@@ -982,27 +982,6 @@ button.feature:hover {
       <button class="filter-btn" data-filter="tracking">動作捕捉</button>
       <button class="filter-btn" data-filter="offshore">浮式平台</button>
     </div>
-const facilityButtons = document.querySelectorAll('.feature[data-target]');
-const facilityImages = document.querySelectorAll('.facility-highlight');
-const facilityImageLabel = document.getElementById('facilityImageLabel');
-
-function showFacilityImage(target, title) {
-  facilityImages.forEach(img => {
-    img.classList.toggle('active', img.dataset.facilityImg === target);
-  });
-
-  facilityImageLabel.textContent = title;
-}
-
-facilityButtons.forEach(button => {
-  button.addEventListener('mouseenter', () => {
-    showFacilityImage(button.dataset.target, button.dataset.title);
-  });
-
-  button.addEventListener('mouseleave', () => {
-    showFacilityImage('overview', '大型拖曳水槽全景');
-  });
-});
     
     <div class="experiment-grid">
       <article class="experiment-card" data-category="cfd">
@@ -1214,7 +1193,27 @@ facilityButtons.forEach(button => {
         });
       });
     });
+const facilityButtons = document.querySelectorAll('.feature[data-target]');
+const facilityImages = document.querySelectorAll('.facility-highlight');
+const facilityImageLabel = document.getElementById('facilityImageLabel');
 
+function showFacilityImage(target, title) {
+  facilityImages.forEach(img => {
+    img.classList.toggle('active', img.dataset.facilityImg === target);
+  });
+
+  facilityImageLabel.textContent = title;
+}
+
+facilityButtons.forEach(button => {
+  button.addEventListener('mouseenter', () => {
+    showFacilityImage(button.dataset.target, button.dataset.title);
+  });
+
+  button.addEventListener('mouseleave', () => {
+    showFacilityImage('overview', '大型拖曳水槽全景');
+  });
+});
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImg');
     const lightboxClose = document.getElementById('lightboxClose');
