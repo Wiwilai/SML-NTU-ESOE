@@ -1642,7 +1642,10 @@ const members = [
     title: "博士生",
     category: "phd",
     categoryText: "博士生",
-    degree: "國立臺灣大學工程科學及海洋工程學系",
+    degree: [
+  "Ph.D., Department of Engineering Science and Ocean Engineering, National Taiwan University",
+  "B.S., Department of Engineering Science and Ocean Engineering, National Taiwan University"
+],
     photo: "members/pyh.jpeg",
     affiliation: "",
     office: "",
@@ -1657,8 +1660,11 @@ const members = [
     title: "碩士生",
     category: "master",
     categoryText: "碩士生",
-    degree: "國立臺灣大學工程科學及海洋工程學系",
-    photo: "members/zyl.jpeg",
+    degree: [
+  "M.S., Department of Engineering Science and Ocean Engineering, National Taiwan University",
+  "B.S., Department of Engineering Science and Ocean Engineering, National Taiwan University"
+            ], 
+      photo: "members/zyl.jpeg",
     affiliation: "",
     office: "",
     phone: "",
@@ -1672,7 +1678,10 @@ const members = [
     title: "碩士生",
     category: "master",
     categoryText: "碩士生",
-    degree: "國立臺灣大學工程科學及海洋工程學系",
+    degree: [
+  "M.S., Department of Engineering Science and Ocean Engineering, National Taiwan University",
+  "B.S., Department of Systems and Naval Mechatronic Engineering, National Cheng Kung University"
+       ],     
     photo: "members/hch.jpeg",
     affiliation: "TSMC",
     office: "南科F18",
@@ -1685,9 +1694,12 @@ const members = [
     {
     name: "李福恩",
     title: "碩士生",
-    category: "master",
+    category: "master 
     categoryText: "碩士生",
-    degree: "國立臺灣大學工程科學及海洋工程學系",
+    degree: [
+  "M.S., Department of Engineering Science and Ocean Engineering, National Taiwan University",
+  "B.S., Department of Marine Environment and Engineering, National Sun Yat-sen University"
+        ],   
     photo: "members/fel.jpeg",
     affiliation: "",
     office: "",
@@ -1702,7 +1714,10 @@ const members = [
     title: "碩士生",
     category: "master",
     categoryText: "碩士生",
-    degree: "國立臺灣大學工程科學及海洋工程學系",
+    degree: [
+  "M.S., Department of Engineering Science and Ocean Engineering, National Taiwan University",
+  "B.S., Department of Marine Environment and Engineering, National Sun Yat-sen University"
+            ],    
     photo: "members/ywl.jpeg",
     affiliation: "",
     office: "",
@@ -1758,8 +1773,16 @@ function openMemberModal(member) {
   memberModalPhoto.alt = `${member.name}${member.title}照片`;
 
   memberModalName.textContent = `${member.name} ${member.title}`;
+if (Array.isArray(member.degree)) {
+  memberModalTitle.innerHTML = `
+    <div class="member-education-title">學歷</div>
+    <ul class="member-education-list">
+      ${member.degree.map(item => `<li>${item}</li>`).join("")}
+    </ul>
+  `;
+} else {
   memberModalTitle.textContent = member.degree || member.affiliation || member.categoryText;
-  memberModalDescription.textContent = member.description || "";
+}  memberModalDescription.textContent = member.description || "";
 
   const contactItems = [];
 
