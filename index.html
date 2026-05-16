@@ -325,74 +325,279 @@
       color: rgba(255,255,255,.72);
     }
 
-    /* =======================
-       PI
-    ======================= */
+   /* =======================
+   Team
+======================= */
 
-    .grid-2 {
-      display: grid;
-      grid-template-columns: .9fr 1.1fr;
-      gap: 40px;
-      align-items: center;
-    }
+.team-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 32px 0 36px;
+}
 
-    .card {
-      overflow: hidden;
-      border-radius: var(--radius);
-      background: var(--white);
-      box-shadow: var(--shadow);
-    }
+.team-filter-btn {
+  border: 1px solid var(--line-dark);
+  background: var(--white);
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 11px 20px;
+  font-size: .95rem;
+  font-weight: 900;
+  cursor: pointer;
+  transition: .25s ease;
+  box-shadow: 0 10px 26px rgba(16, 32, 51, .06);
+}
 
-    .pi-photo {
-      height: 560px;
-      background: #fff;
-    }
+.team-filter-btn:hover,
+.team-filter-btn.active {
+  background: var(--navy);
+  color: var(--white);
+  border-color: var(--navy);
+  transform: translateY(-2px);
+}
 
-    .pi-photo img {
-      object-fit: contain;
-      padding: 10px;
-      background: #fff;
-    }
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 26px;
+}
 
-    .pi-info {
-      padding: 42px;
-    }
+.member-card {
+  overflow: hidden;
+  border: 0;
+  border-radius: 28px;
+  background: var(--white);
+  box-shadow: 0 18px 46px rgba(16, 32, 51, .12);
+  cursor: pointer;
+  text-align: left;
+  transition: .28s ease;
+}
 
-    .pi-info h3 {
-      font-size: 2.1rem;
-      line-height: 1.2;
-      margin-bottom: 6px;
-    }
+.member-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 26px 70px rgba(16, 32, 51, .18);
+}
 
-    .pi-title {
-      color: var(--blue);
-      font-weight: 900;
-      margin-bottom: 22px;
-    }
+.member-thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  background: #e7eef5;
+  overflow: hidden;
+}
 
-    .contact-list {
-      display: grid;
-      gap: 10px;
-      margin: 24px 0;
-      color: var(--muted);
-    }
+.member-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: .45s ease;
+}
 
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 22px;
-    }
+.member-card:hover .member-thumb img {
+  transform: scale(1.05);
+}
 
-    .chip {
-      padding: 8px 13px;
-      border-radius: 999px;
-      background: #eaf5ff;
-      color: var(--navy);
-      font-size: .92rem;
-      font-weight: 850;
-    }
+.member-role-badge {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(2, 11, 20, .68);
+  color: #fff;
+  font-size: .82rem;
+  font-weight: 900;
+  backdrop-filter: blur(10px);
+}
 
+.member-card-body {
+  padding: 18px 18px 20px;
+}
+
+.member-card-body h3 {
+  font-size: 1.25rem;
+  line-height: 1.25;
+  color: var(--ink);
+  margin-bottom: 5px;
+}
+
+.member-card-body p {
+  color: var(--blue);
+  font-size: .94rem;
+  font-weight: 850;
+}
+
+/* Member Modal */
+
+.member-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 34px;
+  background: rgba(2, 11, 20, .78);
+  backdrop-filter: blur(12px);
+}
+
+.member-modal.show {
+  display: flex;
+}
+
+.member-modal-panel {
+  position: relative;
+  width: min(1180px, 94vw);
+  max-height: 88vh;
+  overflow: auto;
+  display: grid;
+  grid-template-columns: .85fr 1.15fr;
+  gap: 28px;
+  padding: 28px;
+  border-radius: 34px;
+  background: rgba(245, 248, 251, .96);
+  box-shadow: 0 36px 90px rgba(0, 0, 0, .38);
+}
+
+.member-modal-photo {
+  overflow: hidden;
+  border-radius: 28px;
+  background: #fff;
+  box-shadow: 0 18px 48px rgba(16, 32, 51, .16);
+}
+
+.member-modal-photo img {
+  width: 100%;
+  height: 100%;
+  min-height: 520px;
+  object-fit: contain;
+  background: #fff;
+}
+
+.member-modal-info {
+  align-self: center;
+  padding: 36px;
+  border-radius: 28px;
+  background: var(--white);
+  box-shadow: 0 18px 48px rgba(16, 32, 51, .12);
+}
+
+.member-modal-info h3 {
+  font-size: clamp(2rem, 3vw, 3rem);
+  line-height: 1.2;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+.member-modal-title {
+  color: var(--blue);
+  font-size: 1.08rem;
+  font-weight: 950;
+  margin-bottom: 22px;
+}
+
+.member-modal-description {
+  color: var(--ink);
+  font-size: 1.08rem;
+  line-height: 2;
+  margin-bottom: 24px;
+}
+
+.member-modal-contact {
+  display: grid;
+  gap: 10px;
+  color: var(--muted);
+  margin: 22px 0;
+  font-size: 1rem;
+}
+
+.member-modal-contact a {
+  color: var(--muted);
+}
+
+.member-modal-contact a:hover {
+  color: var(--blue);
+}
+
+.member-modal-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.member-modal-chip {
+  padding: 8px 13px;
+  border-radius: 999px;
+  background: #eaf5ff;
+  color: var(--navy);
+  font-size: .92rem;
+  font-weight: 850;
+}
+
+.member-modal-close {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  z-index: 3;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(2, 11, 20, .82);
+  color: #fff;
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.member-modal-close:hover {
+  background: var(--blue);
+}
+
+@media (max-width: 900px) {
+  .member-modal-panel {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+
+  .member-modal-photo img {
+    min-height: 360px;
+  }
+
+  .member-modal-info {
+    padding: 26px;
+  }
+}
+
+@media (max-width: 680px) {
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .member-card-body {
+    padding: 14px;
+  }
+
+  .member-card-body h3 {
+    font-size: 1.05rem;
+  }
+
+  .member-card-body p {
+    font-size: .86rem;
+  }
+
+  .team-filter-btn {
+    padding: 9px 14px;
+    font-size: .88rem;
+  }
+
+  .member-modal {
+    padding: 18px;
+  }
+}
     /* =======================
        Facility
     ======================= */
@@ -1079,45 +1284,45 @@
     <button class="video-toggle" id="videoToggle" type="button">Pause Video</button>
   </header>
 
-  <section id="pi" class="reveal">
-    <div class="section-head">
-      <span class="tag">Principal Investigator</span>
-      <h2>實驗室指導教授</h2>
-      <p>
-        透過實驗量測、數值模擬與工程設計，建立船舶水動力與海洋工程系統之完整研究能力。
-      </p>
+<section id="pi" class="reveal">
+  <div class="section-head">
+    <span class="tag">Research Team</span>
+    <h2>團隊介紹</h2>
+    <p>
+      本實驗室成員涵蓋教授、博士生、碩士生與畢業成員，研究主題包括船舶水動力、船模試驗、推進系統、計算流體力學與海洋工程實驗分析。
+    </p>
+  </div>
+
+  <div class="team-filter" id="teamFilter">
+    <button class="team-filter-btn active" type="button" data-filter="all">全部</button>
+    <button class="team-filter-btn" type="button" data-filter="professor">教授</button>
+    <button class="team-filter-btn" type="button" data-filter="phd">博士生</button>
+    <button class="team-filter-btn" type="button" data-filter="master">碩士生</button>
+    <button class="team-filter-btn" type="button" data-filter="alumni">畢業生</button>
+  </div>
+
+  <div class="team-grid" id="teamGrid"></div>
+</section>
+
+<div class="member-modal" id="memberModal">
+  <div class="member-modal-panel">
+    <button class="member-modal-close" id="memberModalClose" type="button" aria-label="關閉">×</button>
+
+    <div class="member-modal-photo">
+      <img id="memberModalPhoto" src="" alt="">
     </div>
 
-    <div class="grid-2">
-      <div class="card pi-photo lightbox-source">
-        <img src="教授照片.png" alt="林宗岳助理教授照片" />
-      </div>
+    <div class="member-modal-info">
+      <h3 id="memberModalName"></h3>
+      <div class="member-modal-title" id="memberModalTitle"></div>
+      <p class="member-modal-description" id="memberModalDescription"></p>
 
-      <div class="card pi-info">
-        <h3>林宗岳 助理教授</h3>
+      <div class="member-modal-contact" id="memberModalContact"></div>
 
-        <div class="pi-title">國立臺灣大學博士</div>
-
-        <p>
-          本實驗室聚焦於船舶水動力、幾何造型、船舶設計、計算流體力學與船模試驗。研究團隊以大型拖曳水槽為主要實驗平台，量測船體、推進器與海洋結構物在不同操作條件下的受力與運動反應。
-        </p>
-
-        <div class="contact-list">
-          <div>📍 工海 211 室</div>
-          <div>☎ 02-3366-5751</div>
-          <div>✉ tylin110@ntu.edu.tw</div>
-        </div>
-
-        <div class="chips">
-          <span class="chip">船舶水動力</span>
-          <span class="chip">船模試驗</span>
-          <span class="chip">推進系統</span>
-          <span class="chip">計算流體力學</span>
-          <span class="chip">船舶設計</span>
-        </div>
-      </div>
+      <div class="member-modal-chips" id="memberModalChips"></div>
     </div>
-  </section>
+  </div>
+</div>
 
   <section class="dark reveal" id="facility">
     <div class="section-head">
@@ -1412,6 +1617,176 @@
     const heroVideo = document.getElementById('heroVideo');
     const videoToggle = document.getElementById('videoToggle');
 
+    /* =======================
+   Team Members
+======================= */
+
+const members = [
+  {
+    name: "林宗岳",
+    title: "助理教授",
+    category: "professor",
+    categoryText: "教授",
+    degree: "國立臺灣大學博士",
+    photo: "教授照片.png",
+    affiliation: "國立臺灣大學工程科學及海洋工程學系",
+    office: "工海 211 室",
+    phone: "02-3366-5751",
+    email: "tylin110@ntu.edu.tw",
+    description: "本實驗室聚焦於船舶水動力、幾何造型、船舶設計、計算流體力學與船模試驗。研究團隊以大型拖曳水槽為主要實驗平台，量測船體、推進器與海洋結構物在不同操作條件下的受力與運動反應。",
+    keywords: ["船舶水動力", "船模試驗", "推進系統", "計算流體力學", "船舶設計"]
+  },
+
+  {
+    name: "王小明",
+    title: "碩士生",
+    category: "master",
+    categoryText: "碩士生",
+    degree: "國立臺灣大學工程科學及海洋工程學系",
+    photo: "members/member-01.jpg",
+    affiliation: "國立臺灣大學船模實驗室",
+    office: "",
+    phone: "",
+    email: "example@ntu.edu.tw",
+    description: "研究主題為船舶推進性能、螺旋槳水動力與拖曳水槽模型試驗。",
+    keywords: ["螺旋槳", "推進性能", "拖曳水槽"]
+  },
+
+  {
+    name: "陳小華",
+    title: "博士生",
+    category: "phd",
+    categoryText: "博士生",
+    degree: "國立臺灣大學工程科學及海洋工程學系",
+    photo: "members/member-02.jpg",
+    affiliation: "國立臺灣大學船模實驗室",
+    office: "",
+    phone: "",
+    email: "example2@ntu.edu.tw",
+    description: "研究方向包含船舶操縱性、耐海性與水動力係數分析。",
+    keywords: ["操縱性", "耐海性", "PMM"]
+  },
+
+  {
+    name: "張小安",
+    title: "畢業生",
+    category: "alumni",
+    categoryText: "畢業生",
+    degree: "碩士",
+    photo: "members/member-03.jpg",
+    affiliation: "目前服務單位可填於此",
+    office: "",
+    phone: "",
+    email: "",
+    description: "曾參與船模試驗、資料分析與海洋工程相關研究。",
+    keywords: ["畢業成員", "船模試驗"]
+  }
+];
+
+const teamGrid = document.getElementById("teamGrid");
+const teamFilterButtons = document.querySelectorAll(".team-filter-btn");
+
+const memberModal = document.getElementById("memberModal");
+const memberModalClose = document.getElementById("memberModalClose");
+const memberModalPhoto = document.getElementById("memberModalPhoto");
+const memberModalName = document.getElementById("memberModalName");
+const memberModalTitle = document.getElementById("memberModalTitle");
+const memberModalDescription = document.getElementById("memberModalDescription");
+const memberModalContact = document.getElementById("memberModalContact");
+const memberModalChips = document.getElementById("memberModalChips");
+
+function renderMembers(filter = "all") {
+  const filteredMembers = filter === "all"
+    ? members
+    : members.filter(member => member.category === filter);
+
+  teamGrid.innerHTML = filteredMembers.map((member, index) => `
+    <button class="member-card" type="button" data-member-index="${members.indexOf(member)}">
+      <div class="member-thumb">
+        <img src="${member.photo}" alt="${member.name}${member.title}照片">
+        <div class="member-role-badge">${member.categoryText}</div>
+      </div>
+
+      <div class="member-card-body">
+        <h3>${member.name}</h3>
+        <p>${member.title}</p>
+      </div>
+    </button>
+  `).join("");
+
+  document.querySelectorAll(".member-card").forEach(card => {
+    card.addEventListener("click", () => {
+      const memberIndex = Number(card.dataset.memberIndex);
+      openMemberModal(members[memberIndex]);
+    });
+  });
+}
+
+function openMemberModal(member) {
+  memberModalPhoto.src = member.photo;
+  memberModalPhoto.alt = `${member.name}${member.title}照片`;
+
+  memberModalName.textContent = `${member.name} ${member.title}`;
+  memberModalTitle.textContent = member.degree || member.affiliation || member.categoryText;
+  memberModalDescription.textContent = member.description || "";
+
+  const contactItems = [];
+
+  if (member.affiliation) {
+    contactItems.push(`<div>🏢 ${member.affiliation}</div>`);
+  }
+
+  if (member.office) {
+    contactItems.push(`<div>📍 ${member.office}</div>`);
+  }
+
+  if (member.phone) {
+    contactItems.push(`<div>☎ ${member.phone}</div>`);
+  }
+
+  if (member.email) {
+    contactItems.push(`<div>✉ <a href="mailto:${member.email}">${member.email}</a></div>`);
+  }
+
+  memberModalContact.innerHTML = contactItems.join("");
+
+  memberModalChips.innerHTML = (member.keywords || [])
+    .map(keyword => `<span class="member-modal-chip">${keyword}</span>`)
+    .join("");
+
+  memberModal.classList.add("show");
+  document.body.style.overflow = "hidden";
+}
+
+function closeMemberModal() {
+  memberModal.classList.remove("show");
+  document.body.style.overflow = "";
+}
+
+teamFilterButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    teamFilterButtons.forEach(btn => btn.classList.remove("active"));
+    button.classList.add("active");
+    renderMembers(button.dataset.filter);
+  });
+});
+
+memberModalClose.addEventListener("click", closeMemberModal);
+
+memberModal.addEventListener("click", event => {
+  if (event.target === memberModal) {
+    closeMemberModal();
+  }
+});
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") {
+    closeMemberModal();
+  }
+});
+
+renderMembers();
+    
     window.addEventListener('scroll', () => {
       navbar.classList.toggle('scrolled', window.scrollY > 40);
       backTop.classList.toggle('show', window.scrollY > 500);
