@@ -929,6 +929,7 @@
   width: 100%;
   height: 720px;
   overflow: hidden;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -942,21 +943,25 @@
 
 .life-slide {
   position: absolute;
+
   top: 50%;
   left: 50%;
+
   width: min(72vw, 980px);
   height: 620px;
 
   border-radius: 34px;
   overflow: hidden;
 
-  transform-style: preserve-3d;
   transition:
     transform .65s ease,
     opacity .5s ease,
     filter .5s ease;
 
+  transform-style: preserve-3d;
+
   box-shadow: 0 30px 80px rgba(0,0,0,.22);
+
   cursor: pointer;
 }
 
@@ -966,77 +971,126 @@
   object-fit: cover;
 }
 
-/* 中間主圖 */
+/* 黑色漸層 */
+
+.life-slide::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  transition: .45s ease;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(2,11,20,.72),
+      rgba(2,11,20,.08)
+    );
+}
+
+/* =======================
+   中間主圖
+======================= */
+
 .life-slide.active {
+
   transform:
     translate(-50%, -50%)
     scale(1);
 
   opacity: 1;
   z-index: 5;
+
   filter: blur(0);
 }
 
-/* 左側 */
-.life-slide.prev {
+/* 主圖變亮 */
+
+.life-slide.active::after {
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(2,11,20,.28),
+      rgba(2,11,20,0)
+    );
+}
+
+/* =======================
+   左側縮圖
+======================= */
+
+.life-slide.is-prev {
+
   transform:
     translate(-125%, -52%)
     scale(.72)
     rotateY(18deg);
 
   opacity: .55;
+
   z-index: 3;
+
   filter: blur(1px);
 }
 
-/* 右側 */
-.life-slide.next {
+/* =======================
+   右側縮圖
+======================= */
+
+.life-slide.is-next {
+
   transform:
     translate(25%, -48%)
     scale(.72)
     rotateY(-18deg);
 
   opacity: .55;
+
   z-index: 3;
+
   filter: blur(1px);
 }
 
-/* 更旁邊 */
+/* =======================
+   隱藏兩側
+======================= */
+
 .life-slide.hide-left {
+
   transform:
     translate(-180%, -50%)
     scale(.55);
 
   opacity: 0;
+
   z-index: 1;
 }
 
 .life-slide.hide-right {
+
   transform:
     translate(80%, -50%)
     scale(.55);
 
   opacity: 0;
+
   z-index: 1;
 }
 
-.life-slide::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(
-      to top,
-      rgba(2,11,20,.82),
-      rgba(2,11,20,.15)
-    );
-}
+/* =======================
+   Caption
+======================= */
 
 .life-caption {
   position: absolute;
+
   left: 34px;
   bottom: 28px;
+
   z-index: 3;
+
   color: #fff;
 }
 
@@ -1046,9 +1100,13 @@
 }
 
 .life-caption p {
-  color: rgba(255,255,255,.8);
+  color: rgba(255,255,255,.82);
   font-weight: 700;
 }
+
+/* =======================
+   Mobile
+======================= */
 
 @media (max-width: 900px) {
 
@@ -1061,13 +1119,15 @@
     height: 420px;
   }
 
-  .life-slide.prev {
+  .life-slide.is-prev {
+
     transform:
       translate(-110%, -50%)
       scale(.68);
   }
 
-  .life-slide.next {
+  .life-slide.is-next {
+
     transform:
       translate(10%, -50%)
       scale(.68);
@@ -2084,46 +2144,59 @@ renderMembers();
       }
     });
 
-    const lifeTrack = document.getElementById('lifeTrack');
-    const lifeSlides = document.querySelectorAll('.life-slide');
-    const lifePrev = document.getElementById('lifePrev');
-    const lifeNext = document.getElementById('lifeNext');
-    const lifeDots = document.getElementById('lifeDots');
-    const lifeCurrent = document.getElementById('lifeCurrent');
-    const lifeTotal = document.getElementById('lifeTotal');
-    const lifeCarousel = document.getElementById('lifeCarousel');
+const lifeTrack = document.getElementById('lifeTrack');
+const lifeSlides = document.querySelectorAll('.life-slide');
 
-    let lifeIndex = 0;
-    let lifeTimer;
+const lifePrev = document.getElementById('lifePrev');
+const lifeNext = document.getElementById('lifeNext');
 
-    lifeTotal.textContent = lifeSlides.length;
+const lifeDots = document.getElementById('lifeDots');
 
-    lifeSlides.forEach((_, index) => {
-      const dot = document.createElement('button');
-      dot.className = 'carousel-dot';
-      dot.type = 'button';
-      dot.setAttribute('aria-label', `切換到第 ${index + 1} 張`);
+const lifeCurrent = document.getElementById('lifeCurrent');
+const lifeTotal = document.getElementById('lifeTotal');
 
-      dot.addEventListener('click', () => {
-        showLifeSlide(index);
-        restartLifeAutoplay();
-      });
+const lifeCarousel = document.getElementById('lifeCarousel');
 
-      lifeDots.appendChild(dot);
-    });
+let lifeIndex = 0;
+let lifeTimer;
 
-    const lifeDotButtons = document.querySelectorAll('.carousel-dot');
+lifeTotal.textContent = lifeSlides.length;
+
+/* Dots */
+
+lifeSlides.forEach((_, index) => {
+
+  const dot = document.createElement('button');
+
+  dot.className = 'carousel-dot';
+  dot.type = 'button';
+
+  dot.addEventListener('click', () => {
+
+    showLifeSlide(index);
+    restartLifeAutoplay();
+  });
+
+  lifeDots.appendChild(dot);
+});
+
+const lifeDotButtons =
+  document.querySelectorAll('.carousel-dot');
+
+/* Main */
 
 function showLifeSlide(index) {
 
-  lifeIndex = (index + lifeSlides.length) % lifeSlides.length;
+  lifeIndex =
+    (index + lifeSlides.length) %
+    lifeSlides.length;
 
   lifeSlides.forEach((slide, i) => {
 
     slide.classList.remove(
       'active',
-      'prev',
-      'next',
+      'is-prev',
+      'is-next',
       'hide-left',
       'hide-right'
     );
@@ -2132,23 +2205,35 @@ function showLifeSlide(index) {
 
       slide.classList.add('active');
 
-    } else if (
-      i === (lifeIndex - 1 + lifeSlides.length) % lifeSlides.length
+    }
+
+    else if (
+      i ===
+      (lifeIndex - 1 + lifeSlides.length)
+      % lifeSlides.length
     ) {
 
-      slide.classList.add('prev');
+      slide.classList.add('is-prev');
 
-    } else if (
-      i === (lifeIndex + 1) % lifeSlides.length
+    }
+
+    else if (
+      i ===
+      (lifeIndex + 1)
+      % lifeSlides.length
     ) {
 
-      slide.classList.add('next');
+      slide.classList.add('is-next');
 
-    } else if (i < lifeIndex) {
+    }
+
+    else if (i < lifeIndex) {
 
       slide.classList.add('hide-left');
 
-    } else {
+    }
+
+    else {
 
       slide.classList.add('hide-right');
     }
@@ -2157,29 +2242,106 @@ function showLifeSlide(index) {
   lifeCurrent.textContent = lifeIndex + 1;
 
   lifeDotButtons.forEach((dot, i) => {
-    dot.classList.toggle('active', i === lifeIndex);
+
+    dot.classList.toggle(
+      'active',
+      i === lifeIndex
+    );
   });
 }
 
-    function nextLifeSlide() {
-      showLifeSlide(lifeIndex + 1);
+/* Buttons */
+
+function nextLifeSlide() {
+
+  showLifeSlide(lifeIndex + 1);
+}
+
+function prevLifeSlide() {
+
+  showLifeSlide(lifeIndex - 1);
+}
+
+lifeNext.addEventListener('click', () => {
+
+  nextLifeSlide();
+  restartLifeAutoplay();
+});
+
+lifePrev.addEventListener('click', () => {
+
+  prevLifeSlide();
+  restartLifeAutoplay();
+});
+
+/* Autoplay */
+
+function startLifeAutoplay() {
+
+  lifeTimer =
+    setInterval(nextLifeSlide, 4200);
+}
+
+function stopLifeAutoplay() {
+
+  clearInterval(lifeTimer);
+}
+
+function restartLifeAutoplay() {
+
+  stopLifeAutoplay();
+  startLifeAutoplay();
+}
+
+lifeCarousel.addEventListener(
+  'mouseenter',
+  stopLifeAutoplay
+);
+
+lifeCarousel.addEventListener(
+  'mouseleave',
+  startLifeAutoplay
+);
+
+/* Touch Swipe */
+
+let touchStartX = 0;
+let touchEndX = 0;
+
+lifeCarousel.addEventListener(
+  'touchstart',
+  e => {
+
+    touchStartX =
+      e.changedTouches[0].screenX;
+  }
+);
+
+lifeCarousel.addEventListener(
+  'touchend',
+  e => {
+
+    touchEndX =
+      e.changedTouches[0].screenX;
+
+    if (touchEndX < touchStartX - 50) {
+
+      nextLifeSlide();
+      restartLifeAutoplay();
     }
 
-    function prevLifeSlide() {
-      showLifeSlide(lifeIndex - 1);
-    }
+    if (touchEndX > touchStartX + 50) {
 
-    function startLifeAutoplay() {
-      lifeTimer = setInterval(nextLifeSlide, 4200);
+      prevLifeSlide();
+      restartLifeAutoplay();
     }
+  }
+);
 
-    function stopLifeAutoplay() {
-      clearInterval(lifeTimer);
-    }
+/* Init */
 
-    function restartLifeAutoplay() {
-      stopLifeAutoplay();
-      startLifeAutoplay();
+showLifeSlide(0);
+startLifeAutoplay();
     }
 
     lifeNext.addEventListener('click', () => {
