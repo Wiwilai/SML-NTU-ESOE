@@ -895,6 +895,83 @@
       transform: translateY(-2px);
     }
 
+    /* =======================
+   Research Section
+======================= */
+
+.research-layout {
+  display: grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap: 34px;
+  align-items: start;
+}
+
+.research-block {
+  padding: 34px;
+  border-radius: 30px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+}
+
+.research-block h3 {
+  font-size: 1.7rem;
+  margin-bottom: 28px;
+  color: var(--cyan);
+}
+
+.publication-group {
+  margin-bottom: 34px;
+}
+
+.publication-category {
+  margin-bottom: 14px;
+  font-size: 1rem;
+  font-weight: 900;
+  color: #fff;
+}
+
+.publication-item {
+  padding: 14px 18px;
+  margin-bottom: 12px;
+  border-radius: 16px;
+  background: rgba(255,255,255,.05);
+  color: rgba(255,255,255,.82);
+  line-height: 1.7;
+}
+
+.project-card {
+  padding: 24px;
+  margin-bottom: 20px;
+  border-radius: 22px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.1);
+}
+
+.project-year {
+  color: var(--cyan);
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+
+.project-card h4 {
+  font-size: 1.08rem;
+  line-height: 1.6;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.project-card p {
+  color: rgba(255,255,255,.72);
+}
+
+@media (max-width: 980px) {
+
+  .research-layout {
+    grid-template-columns: 1fr;
+  }
+
+}
+    
 /* =======================
    Life Coverflow Carousel
 ======================= */
@@ -1357,6 +1434,7 @@
       <a href="#pi">團隊介紹</a>
       <a href="#facility">大型水槽</a>
       <a href="#capabilities">實驗能力</a>
+      <a href="#research">研究成果</a>
       <a href="#life">團隊生活</a>
       <a href="#contact">聯絡我們</a>
     </div>
@@ -1611,7 +1689,143 @@
 
     </div>
   </section>
+<section id="research" class="reveal dark">
 
+  <div class="section-head">
+    <span class="tag">Research & Publications</span>
+
+    <h2>研究成果</h2>
+
+    <p>
+      本實驗室研究涵蓋船舶水動力、推進系統、
+      CFD 數值模擬、離岸風機、浮式平台、
+      波浪載重與船模試驗等領域，
+      並持續發表於國際期刊與研討會。
+    </p>
+  </div>
+
+  <div class="research-layout">
+
+    <!-- Publications -->
+
+    <div class="research-block">
+
+      <h3>代表性學術著作</h3>
+
+      <div class="publication-group">
+
+        <div class="publication-category">
+          Ship Hydrodynamics & Maneuvering
+        </div>
+
+        <div class="publication-item">
+          Numerical simulation of added resistance in head waves for a container ship
+        </div>
+
+        <div class="publication-item">
+          Captive Model Test for Hydrodynamic Derivatives of Ship Maneuvering in Regular Head Waves
+        </div>
+
+        <div class="publication-item">
+          Influence of Different Captive Model Tests on Sway Hydrodynamic Derivatives
+        </div>
+
+      </div>
+
+      <div class="publication-group">
+
+        <div class="publication-category">
+          Offshore Wind & Floating Platform
+        </div>
+
+        <div class="publication-item">
+          Model Tests of Hydrodynamic Derivatives of a Polygonal Semi-Submersible Floating Platform
+        </div>
+
+        <div class="publication-item">
+          Influence of Surging and Pitching Behaviors on the Power Output and Wake Characteristics of a 15 MW Floating Wind Turbine
+        </div>
+
+        <div class="publication-item">
+          Long-term power and mooring fatigue evaluation of a 15-MW semi-submersible floating wind turbine
+        </div>
+
+      </div>
+
+      <div class="publication-group">
+
+        <div class="publication-category">
+          CFD & Numerical Simulation
+        </div>
+
+        <div class="publication-item">
+          Investigation of Scale Effect on Numerical Ship Wave-Making Resistance
+        </div>
+
+        <div class="publication-item">
+          Parametric Design and Optimization of a Pivoting S-Type Rudder for Containerships
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Projects -->
+
+    <div class="research-block">
+
+      <h3>研究計畫</h3>
+
+      <div class="project-card">
+
+        <div class="project-year">2024–2025</div>
+
+        <h4>
+          以波浪中平面運動試驗為基礎之物理信息神經網絡發展船舶操控演算法
+        </h4>
+
+        <p>
+          國家科學及技術委員會計畫
+        </p>
+
+      </div>
+
+      <div class="project-card">
+
+        <div class="project-year">2023</div>
+
+        <h4>
+          高等教育深耕計畫－核心研究群計畫
+          【浮式風機之動態尾跡流損失模型開發】
+        </h4>
+
+        <p>
+          Higher Education Sprout Project
+        </p>
+
+      </div>
+
+      <div class="project-card">
+
+        <div class="project-year">2022</div>
+
+        <h4>
+          高等教育深耕計畫－核心研究群計畫
+          【浮式風機之動態尾跡流損失模型開發】
+        </h4>
+
+        <p>
+          Higher Education Sprout Project
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+  
   <section id="life" class="reveal">
     <div class="section-head">
       <span class="tag">Laboratory Life</span>
