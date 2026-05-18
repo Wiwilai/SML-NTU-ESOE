@@ -934,6 +934,49 @@
   text-transform: uppercase;
 }
 
+  .publication-area {
+  margin-bottom: 22px;
+  border-bottom: 1px solid rgba(255,255,255,.12);
+  padding-bottom: 18px;
+}
+
+.publication-area summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: center;
+  padding: 18px 0;
+  color: var(--cyan);
+  font-weight: 950;
+  letter-spacing: .04em;
+}
+
+.publication-area summary::-webkit-details-marker {
+  display: none;
+}
+
+.publication-area summary span {
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+.publication-area summary small {
+  color: rgba(255,255,255,.48);
+  font-size: .85rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.publication-link {
+  display: inline-flex;
+  margin-top: 16px;
+  color: var(--cyan);
+  font-weight: 900;
+  border-bottom: 1px solid rgba(98,214,255,.55);
+}
+    
 .publication-entry {
   display: grid;
   grid-template-columns: 76px 1fr;
@@ -1749,359 +1792,467 @@
 
 <div class="research-block publications-block">
 
-  <h3>學術著作</h3>
+ <h3>學術著作</h3>
 
-  <!-- Ship Hydrodynamics -->
+      <details class="publication-area" open>
 
-  <div class="publication-group">
+        <summary>
 
-    <div class="publication-category">
-      Ship Hydrodynamics, Maneuvering & Seakeeping
-    </div>
+          <span>Ship Hydrodynamics, Marine Propulsion & Ship Design</span>
 
-        <div class="publication-entry">
-      <div class="publication-year">2026</div>
-      <div class="publication-citation">
-        Huang, P.-Y., Lin, Z.-Y., Lin, T.-Y., Lee, F.-E., & Lai, Y.-W.
-        <span class="publication-title">
-          Captive Model Test for Hydrodynamic Derivatives of Ship Maneuvering in Regular Head Waves.
-        </span>
-        <span class="publication-journal">
-          Journal of Marine Science and Technology (Taiwan).
-        </span>
-      </div>
-    </div>
+          <small>9 publications</small>
+
+        </summary>
 
         <div class="publication-entry">
-      <div class="publication-year">2025</div>
-      <div class="publication-citation">
-        Huang, P.-Y., Lin, Z.-Y., Lai, Y.-W., & Lin, T.-Y.
-        <span class="publication-title">
-          Influence of Different Captive Model Tests on Sway Hydrodynamic Derivatives.
-        </span>
-        <span class="publication-journal">
-          Journal of Taiwan Society of Naval Architects and Marine Engineers.
-        </span>
-      </div>
-    </div>
+
+          <div class="publication-year">2026</div>
+
+          <div class="publication-citation">
+
+            Huang, P.-Y., Lin, Z.-Y., Lin, T.-Y., Lee, F.-E., & Lai, Y.-W.
+
+            <span class="publication-title">Captive Model Test for Hydrodynamic Derivatives of Ship Maneuvering in Regular Head Waves.</span>
+
+            <span class="publication-journal">Journal of Marine Science and Technology (Taiwan).</span>
+
+          </div>
+
+        </div>
 
         <div class="publication-entry">
-      <div class="publication-year">2018</div>
-      <div class="publication-citation">
-        Lin, C.-T., Hsieh, Y.-W., Lu, L., Hsin, C.-Y., Lin, T.-Y., Lin, C.-W., & Lin, T.-Y.
-        <span class="publication-title">
-          Investigation of the seakeeping performance of twin hull vessels by different computational methods.
-        </span>
-        <span class="publication-journal">
-          Journal of Taiwan Society of Naval Architects and Marine Engineers.
-        </span>
-      </div>
-    </div>
 
-    <div class="publication-entry">
-      <div class="publication-year">2015</div>
-      <div class="publication-citation">
-        Lin, T.-Y., Kouh, J.-S., & Lin, T.-Y.
-        <span class="publication-title">
-          On the scale effect of thrust deduction in a judicious self-propulsion procedure for a moderate-speed containership.
-        </span>
-        <span class="publication-journal">
-          Journal of Marine Science and Technology (Japan).
-        </span>
-      </div>
-    </div>
+          <div class="publication-year">2025</div>
 
-  </div>
+          <div class="publication-citation">
 
-  <!-- CFD -->
+            Huang, P.-Y., Lin, Z.-Y., Lai, Y.-W., & Lin, T.-Y.
 
-  <div class="publication-group">
+            <span class="publication-title">Influence of Different Captive Model Tests on Sway Hydrodynamic Derivatives.</span>
 
-    <div class="publication-category">
-      CFD, Ship Design & Numerical Simulation
-    </div>
+            <span class="publication-journal">Journal of Taiwan Society of Naval Architects and Marine Engineers.</span>
+
+          </div>
+
+        </div>
 
         <div class="publication-entry">
-      <div class="publication-year">2024</div>
-      <div class="publication-citation">
-        Chang, J.-C., Su, Y.-L., Wu, C.-W., & Lin, T.-Y.
-        <span class="publication-title">
-          Investigation of Form Factor for a Full Form Ship: Comparison Between Ship Model Test and Computational Fluid Dynamics.
-        </span>
-        <span class="publication-journal">
-          Journal of Taiwan Society of Naval Architects and Marine Engineers.
-        </span>
-      </div>
-    </div>
+
+          <div class="publication-year">2024</div>
+
+          <div class="publication-citation">
+
+            Chang, J.-C., Su, Y.-L., Wu, C.-W., & Lin, T.-Y.
+
+            <span class="publication-title">Investigation of Form Factor for a Full Form Ship: Comparison Between Ship Model Test and Computational Fluid Dynamics.</span>
+
+            <span class="publication-journal">Journal of Taiwan Society of Naval Architects and Marine Engineers.</span>
+
+          </div>
+
+        </div>
 
         <div class="publication-entry">
-      <div class="publication-year">2022</div>
-      <div class="publication-citation">
-        Chen, S.-H., & Lin, T.-Y.
-        <span class="publication-title">
-          Investigation of Scale Effect on Numerical Ship Wave-Making Resistance.
-        </span>
-        <span class="publication-journal">
-          Journal of Taiwan Society of Naval Architects and Marine Engineers.
-        </span>
-      </div>
-    </div>
+
+          <div class="publication-year">2022</div>
+
+          <div class="publication-citation">
+
+            Chen, S.-H., & Lin, T.-Y.
+
+            <span class="publication-title">Investigation of Scale Effect on Numerical Ship Wave-Making Resistance.</span>
+
+            <span class="publication-journal">Journal of Taiwan Society of Naval Architects and Marine Engineers.</span>
+
+          </div>
+
+        </div>
 
         <div class="publication-entry">
-      <div class="publication-year">2021</div>
-      <div class="publication-citation">
-        Liu, R. K.-S., Lin, T.-Y., & Lin, T.-Y.
-        <span class="publication-title">
-          Analytical solution for Froude-Krylov force of triangulated geometry in linear waves.
-        </span>
-        <span class="publication-journal">
-          Journal of Offshore Mechanics and Arctic Engineering.
-        </span>
-      </div>
-    </div>
-    
-        <div class="publication-entry">
-      <div class="publication-year">2018</div>
-      <div class="publication-citation">
-        Chen, C.-W., Lin, T.-Y., Chen, B.-Y., Kouh, J.-S., & Lin, T.-Y.
-        <span class="publication-title">
-          Parametric Design and Optimization of a Pivoting S-Type Rudder for Containerships.
-        </span>
-        <span class="publication-journal">
-          Journal of Marine Science and Technology (Taiwan).
-        </span>
-      </div>
-    </div>
-    
-    <div class="publication-entry">
-      <div class="publication-year">2016</div>
-      <div class="publication-citation">
-        Lin, T.-Y., Chen, Y.-K., Kouh, J.-S., & Lin, T.-Y.
-        <span class="publication-title">
-          Parametric design and simulation of asymmetric stern for containership.
-        </span>
-        <span class="publication-journal">
-          Journal of Taiwan Society of Naval Architects and Marine Engineers.
-        </span>
-      </div>
-    </div>
+
+          <div class="publication-year">2018</div>
+
+          <div class="publication-citation">
+
+            Lin, C.-T., Hsieh, Y.-W., Lu, L., Hsin, C.-Y., Lin, T.-Y., Lin, C.-W., & Lin, T.-Y.
+
+            <span class="publication-title">Investigation of the Seakeeping Performance of Twin Hull Vessels by Different Computational Methods.</span>
+
+            <span class="publication-journal">Journal of Taiwan Society of Naval Architects and Marine Engineers.</span>
+
+          </div>
+
+        </div>
 
         <div class="publication-entry">
-      <div class="publication-year">2013</div>
-      <div class="publication-citation">
-        Lin, T.-Y., Kouh, J.-S., Wang, P.-W., & Lin, T.-Y.
-        <span class="publication-title">
-          Numerical simulation of added resistance in head waves for a container ship.
-        </span>
-        <span class="publication-journal">
-          Journal of Taiwan Society of Naval Architects and Marine Engineers.
-        </span>
-      </div>
+
+          <div class="publication-year">2018</div>
+
+          <div class="publication-citation">
+
+            Chen, C.-W., Lin, T.-Y., Chen, B.-Y., Kouh, J.-S., & Lin, T.-Y.
+
+            <span class="publication-title">Parametric Design and Optimization of a Pivoting S-Type Rudder for Containerships.</span>
+
+            <span class="publication-journal">Journal of Marine Science and Technology (Taiwan).</span>
+
+          </div>
+
+        </div>
+
+        <div class="publication-entry">
+
+          <div class="publication-year">2016</div>
+
+          <div class="publication-citation">
+
+            Lin, T.-Y., Chen, Y.-K., Kouh, J.-S., & Lin, T.-Y.
+
+            <span class="publication-title">Parametric Design and Simulation of Asymmetric Stern for Containership.</span>
+
+            <span class="publication-journal">Journal of Taiwan Society of Naval Architects and Marine Engineers.</span>
+
+          </div>
+
+        </div>
+
+        <div class="publication-entry">
+
+          <div class="publication-year">2015</div>
+
+          <div class="publication-citation">
+
+            Lin, T.-Y., Kouh, J.-S., & Lin, T.-Y.
+
+            <span class="publication-title">On the Scale Effect of Thrust Deduction in a Judicious Self-Propulsion Procedure for a Moderate-Speed Containership.</span>
+
+            <span class="publication-journal">Journal of Marine Science and Technology (Japan).</span>
+
+          </div>
+
+        </div>
+
+        <div class="publication-entry">
+
+          <div class="publication-year">2013</div>
+
+          <div class="publication-citation">
+
+            Lin, T.-Y., Kouh, J.-S., Wang, P.-W., & Lin, T.-Y.
+
+            <span class="publication-title">Numerical Simulation of Added Resistance in Head Waves for a Container Ship.</span>
+
+            <span class="publication-journal">Journal of Taiwan Society of Naval Architects and Marine Engineers.</span>
+
+          </div>
+
+        </div>
+
+      </details>
+
+      <details class="publication-area">
+
+        <summary>
+
+          <span>Offshore Wind Energy & Floating Structures</span>
+
+          <small>12 publications</small>
+
+        </summary>
+
+        <div class="publication-entry">
+
+          <div class="publication-year">2025</div>
+
+          <div class="publication-citation">
+
+            Lu, N.-Y., Tsai, P.-Y., Chao, H.-H., Lin, T.-Y., & Chau, S.-W.
+
+            <span class="publication-title">Long-Term Power and Mooring Fatigue Evaluation of a 15-MW Semi-Submersible Floating Wind Turbine in the Hsinchu Offshore Area.</span>
+
+            <span class="publication-journal">Ocean Engineering.</span>
+
+          </div>
+
+        </div>
+
+        <div class="publication-entry">
+
+          <div class="publication-year">2025</div>
+
+          <div class="publication-citation">
+
+            Lin, T.-Y., Tong, H.-Y., Wong, S.-K., & Chau, S.-W.
+
+            <span class="publication-title">Influence of Surging and Pitching Behaviors on the Power Output and Wake Characteristics of a 15 MW Floating Wind Turbine.</span>
+
+            <span class="publication-journal">Journal of Marine Science and Engineering.</span>
+
+          </div>
+
+        </div>
+
+        <div class="publication-entry">
+
+          <div class="publication-year">2025</div>
+
+          <div class="publication-citation">
+
+            Chen, T.-L., Lee, C.-I., & Lin, T.-Y.
+
+            <span class="publication-title">Model Tests of Hydrodynamic Derivatives of a Polygonal Semi-Submersible Floating Platform.</span>
+
+            <span class="publication-journal">Ocean Engineering.</span>
+
+          </div>
+
+        </div>
+
+        <div class="publication-entry">
+
+          <div class="publication-year">2023</div>
+
+          <div class="publication-citation">
+
+            Tong, H.-Y., Lin, T.-Y., & Chau, S.-W.
+
+            <span class="publication-title">Normal Operating Performance Study of 15 MW Floating Wind Turbine System Using Semisubmersible Taida Floating Platform in Hsinchu Offshore Area.</span>
+
+            <span class="publication-journal">Journal of Marine Science and Engineering.</span>
+
+          </div>
+
+        </div>
+
+        <div class="publication-entry">
+
+          <div class="publication-year">2021</div>
+
+          <div class="publication-citation">
+
+            Lin, T.-Y., Yang, C.-Y., Chau, S.-W., & Lin, T.-Y.
+
+            <span class="publication-title">Dynamic Amplification of Gust-Induced Aerodynamic Loads Acting on a Wind Turbine during Typhoons in Taiwan.</span>
+
+            <span class="publication-journal">Journal of Marine Science and Engineering.</span>
+
+          </div>
+
+        </div>
+
+        <div class="publication-entry">
+
+          <div class="publication-year">2020</div>
+
+          <div class="publication-citation">
+
+            Tzeng, Y.-A., Chen, K.-C., Lin, T.-Y., Chiu, F.-L., Hsin, C.-Y., & Lin, T.-Y.
+
+            <span class="publication-title">Applicability of Different Methods for Computing Wave Forces on Monopile Foundation of Offshore Wind Turbine.</span>
+
+            <span class="publication-journal">Journal of Taiwan Society of Naval Architects and Marine Engineers.</span>
+
+          </div>
+
+        </div>
+
+        <div class="publication-entry">
+
+          <div class="publication-year">2020</div>
+
+          <div class="publication-citation">
+
+            Nelson, B., Lin, T.-Y., & Lin, T.-Y.
+
+            <span class="publication-title">The Development of an Analytical Wake Model for the Flow-Field Assessment of Offshore Wind Farms.</span>
+
+            <span class="publication-journal">Proceedings of OMAE.</span>
+
+          </div>
+
+        </div>
+
+        <div class="publication-entry">
+
+          <div class="publication-year">2020</div>
+
+          <div class="publication-citation">
+
+            Liu, D.-P., Lin, T.-Y., & Huang, H.-H.
+
+            <span class="publication-title">Improving the Computational Efficiency for Optimization of Offshore Wind Turbine Jacket Substructure by Hybrid Algorithms.</span>
+
+            <span class="publication-journal">Journal of Marine Science and Engineering.</span>
+
+          </div>
+
+        </div>
+
+        <div class="publication-entry">
+
+          <div class="publication-year">2020</div>
+
+          <div class="publication-citation">
+
+            Lin, T.-Y., Zhao, Y.-Q., Huang, H.-H., & Lin, T.-Y.
+
+            <span class="publication-title">Representative Environmental Condition for Fatigue Analysis of Offshore Jacket Substructure.</span>
+
+            <span class="publication-journal">Energies.</span>
+
+          </div>
+
+        </div>
+
+        <div class="publication-entry">
+
+          <div class="publication-year">2018</div>
+
+          <div class="publication-citation">
+
+            Chian, C.-Y., Zhao, Y.-Q., Lin, T.-Y., Nelson, B., Huang, H.-H., & Lin, T.-Y.
+
+            <span class="publication-title">Comparative Study of Time-Domain Fatigue Assessments for an Offshore Wind Turbine Jacket Substructure by Using Conventional Grid-Based and Monte Carlo Sampling Methods.</span>
+
+            <span class="publication-journal">Energies.</span>
+
+          </div>
+
+        </div>
+
+        <div class="publication-entry">
+
+          <div class="publication-year">2017</div>
+
+          <div class="publication-citation">
+
+            Nelson, B., Quéméner, Y., Lin, T.-Y., Huang, H.-H., & Lin, T.-Y.
+
+            <span class="publication-title">Calibration of Long-Term Time-Domain Load Generation for Fatigue Life Assessment of Offshore Wind Turbine.</span>
+
+            <span class="publication-journal">Proceedings of OMAE.</span>
+
+          </div>
+
+        </div>
+
+        <div class="publication-entry">
+
+          <div class="publication-year">2016</div>
+
+          <div class="publication-citation">
+
+            Lin, T.-Y., Quéméner, Y., & Lin, T.-Y.
+
+            <span class="publication-title">Extreme Typhoon Loads Effect on the Structural Response of Offshore Meteorological Mast and Wind Turbine.</span>
+
+            <span class="publication-journal">Proceedings of OMAE.</span>
+
+          </div>
+
+        </div>
+
+      </details>
+
+      <details class="publication-area">
+
+        <summary>
+
+          <span>Experimental Hydrodynamics & Numerical Methods</span>
+
+          <small>5 publications</small>
+
+        </summary>
+
+        <div class="publication-entry">
+
+          <div class="publication-year">2025</div>
+
+          <div class="publication-citation">
+
+            Lee, F.-E., Xue, H.-C., & Lin, T.-Y.
+
+            <span class="publication-title">Modification for Irregular Wave Generation System in NTU Towing Tank.</span>
+
+            <span class="publication-journal">Journal of Taiwan Society of Naval Architects and Marine Engineers.</span>
+
+          </div>
+
+        </div>
+
+        <div class="publication-entry">
+
+          <div class="publication-year">2021</div>
+
+          <div class="publication-citation">
+
+            Liu, R. K.-S., Lin, T.-Y., & Lin, T.-Y.
+
+            <span class="publication-title">Analytical Solution for Froude-Krylov Force of Triangulated Geometry in Linear Waves.</span>
+
+            <span class="publication-journal">Journal of Offshore Mechanics and Arctic Engineering.</span>
+
+          </div>
+
+        </div>
+
+        <div class="publication-entry">
+
+          <div class="publication-year">2020</div>
+
+          <div class="publication-citation">
+
+            Lin, T.-Y., Tao, J., Huang, H.-H., & Lin, T.-Y.
+
+            <span class="publication-title">A Multiobjective Perspective to Optimal Sensor Placement by Using a Decomposition-Based Evolutionary Algorithm in Structural Health Monitoring.</span>
+
+            <span class="publication-journal">Applied Sciences.</span>
+
+          </div>
+
+        </div>
+
+        <div class="publication-entry">
+
+          <div class="publication-year">2019</div>
+
+          <div class="publication-citation">
+
+            Lee, C.-F., Sun, C.-T., Hsin, C.-Y., Lee, Y.-J., Chiu, F.-C., Lin, T.-Y., & Lin, T.-Y.
+
+            <span class="publication-title">Ultimate Strength Evaluation of Kuroshio Current Turbine Blades.</span>
+
+            <span class="publication-journal">Proceedings of the International Offshore and Polar Engineering Conference.</span>
+
+          </div>
+
+        </div>
+
+        <div class="publication-entry">
+
+          <div class="publication-year">2018</div>
+
+          <div class="publication-citation">
+
+            Tong, J., Lin, T.-Y., Shih, M.-M., Kouh, J.-S., & Lin, T.-Y.
+
+            <span class="publication-title">An Alternative Method for Computing Hydrostatic Performances of a Floating Body with Arbitrary Geometrical Configurations.</span>
+
+            <span class="publication-journal">Ocean Engineering.</span>
+
+          </div>
+
+        </div>
+
+      </details>
+
+      <a class="publication-link" href="https://scholars.lib.ntu.edu.tw/entities/person/e3ef74a4-0ea9-45a6-bf64-bca4f1df7181/publications?spc.page=1&spc.rpp=40" target="_blank">
+
+        View full publication list on NTU Scholars →
+
+      </a>
+
     </div>
-
-    
-  </div>
-
-  <!-- Offshore -->
-
-  <div class="publication-group">
-
-   <div class="publication-category">
-  Offshore Wind Energy & Floating Structures
-</div>
-
-<div class="publication-entry">
-  <div class="publication-year">2025</div>
-  <div class="publication-citation">
-    Lin, T.-Y., Tong, H.-Y., Wong, S.-K., & Chau, S.-W.
-    <span class="publication-title">
-      Influence of Surging and Pitching Behaviors on the Power Output and Wake Characteristics of a 15 MW Floating Wind Turbine.
-    </span>
-    <span class="publication-journal">
-      Journal of Marine Science and Engineering.
-    </span>
-  </div>
-</div>
-
-<div class="publication-entry">
-  <div class="publication-year">2025</div>
-  <div class="publication-citation">
-    Lu, N.-Y., Tsai, P.-Y., Chao, H.-H., Lin, T.-Y., & Chau, S.-W.
-    <span class="publication-title">
-      Long-term power and mooring fatigue evaluation of a 15-MW semi-submersible floating wind turbine in the Hsinchu offshore area.
-    </span>
-    <span class="publication-journal">
-      Ocean Engineering.
-    </span>
-  </div>
-</div>
-
-<div class="publication-entry">
-  <div class="publication-year">2023</div>
-  <div class="publication-citation">
-    Tong, H.-Y., Lin, T.-Y., & Chau, S.-W.
-    <span class="publication-title">
-      Normal Operating Performance Study of 15 MW Floating Wind Turbine System Using Semisubmersible Taida Floating Platform in Hsinchu Offshore Area.
-    </span>
-    <span class="publication-journal">
-      Journal of Marine Science and Engineering.
-    </span>
-  </div>
-</div>
-
-<div class="publication-entry">
-  <div class="publication-year">2021</div>
-  <div class="publication-citation">
-    Lin, T.-Y., Yang, C.-Y., Chau, S.-W., & Lin, T.-Y.
-    <span class="publication-title">
-      Dynamic amplification of gust-induced aerodynamic loads acting on a wind turbine during typhoons in Taiwan.
-    </span>
-    <span class="publication-journal">
-      Journal of Marine Science and Engineering.
-    </span>
-  </div>
-</div>
-
-<div class="publication-entry">
-  <div class="publication-year">2020</div>
-  <div class="publication-citation">
-    Tzeng, Y.-A., Chen, K.-C., Lin, T.-Y., Chiu, F.-L., Hsin, C.-Y., & Lin, T.-Y.
-    <span class="publication-title">
-      Applicability of different methods for computing wave forces on monopile foundation of offshore wind turbine.
-    </span>
-    <span class="publication-journal">
-      Journal of Taiwan Society of Naval Architects and Marine Engineers.
-    </span>
-  </div>
-</div>
-
-<div class="publication-entry">
-  <div class="publication-year">2020</div>
-  <div class="publication-citation">
-    Nelson, B., Lin, T.-Y., & Lin, T.-Y.
-    <span class="publication-title">
-      The development of an analytical wake model for the flow-field assessment of offshore wind farms.
-    </span>
-    <span class="publication-journal">
-      Proceedings of OMAE.
-    </span>
-  </div>
-</div>
-
-<div class="publication-entry">
-  <div class="publication-year">2020</div>
-  <div class="publication-citation">
-    Liu, D.-P., Lin, T.-Y., & Huang, H.-H.
-    <span class="publication-title">
-      Improving the computational efficiency for optimization of offshore wind turbine jacket substructure by Hybrid Algorithms.
-    </span>
-    <span class="publication-journal">
-      Journal of Marine Science and Engineering.
-    </span>
-  </div>
-</div>
-
-<div class="publication-entry">
-  <div class="publication-year">2020</div>
-  <div class="publication-citation">
-    Lin, T.-Y., Zhao, Y.-Q., Huang, H.-H., & Lin, T.-Y.
-    <span class="publication-title">
-      Representative environmental condition for fatigue analysis of offshore jacket substructure.
-    </span>
-    <span class="publication-journal">
-      Energies.
-    </span>
-  </div>
-</div>
-
-<div class="publication-entry">
-  <div class="publication-year">2018</div>
-  <div class="publication-citation">
-    Chian, C.-Y., Zhao, Y.-Q., Lin, T.-Y., Nelson, B., Huang, H.-H., & Lin, T.-Y.
-    <span class="publication-title">
-      Comparative study of time-domain fatigue assessments for an offshore wind turbine jacket substructure by using conventional grid-based and Monte Carlo sampling methods.
-    </span>
-    <span class="publication-journal">
-      Energies.
-    </span>
-  </div>
-</div>
-
-<div class="publication-entry">
-  <div class="publication-year">2016</div>
-  <div class="publication-citation">
-    Lin, T.-Y., Quéméner, Y., & Lin, T.-Y.
-    <span class="publication-title">
-      Extreme typhoon loads effect on the structural response of offshore meteorological mast and wind turbine.
-    </span>
-    <span class="publication-journal">
-      Proceedings of OMAE.
-    </span>
-  </div>
-</div>
-
-</div>
-
-  <!-- Floating -->
-
-  <div class="publication-group">
-
-    <div class="publication-category">
-      Floating Platforms & Experimental Hydrodynamics
-    </div>
-
-    <div class="publication-entry">
-      <div class="publication-year">2025</div>
-      <div class="publication-citation">
-        Chen, T.-L., Lee, C.-I., & Lin, T.-Y.
-        <span class="publication-title">
-          Model Tests of Hydrodynamic Derivatives of a Polygonal Semi-Submersible Floating Platform.
-        </span>
-        <span class="publication-journal">
-          Ocean Engineering.
-        </span>
-      </div>
-    </div>
-
-    <div class="publication-entry">
-      <div class="publication-year">2025</div>
-      <div class="publication-citation">
-        Lee, F.-E., Xue, H.-C., & Lin, T.-Y.
-        <span class="publication-title">
-          Modification for Irregular Wave Generation System in NTU Towing Tank.
-        </span>
-        <span class="publication-journal">
-          Journal of Taiwan Society of Naval Architects and Marine Engineers.
-        </span>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- Marine Renewable -->
-
-  <div class="publication-group">
-
-    <div class="publication-category">
-      Marine Renewable Energy
-    </div>
-
-    <div class="publication-entry">
-      <div class="publication-year">2019</div>
-      <div class="publication-citation">
-        Lee, C.-F., Sun, C.-T., Hsin, C.-Y., Lee, Y.-J., Chiu, F.-C., Lin, T.-Y., & Lin, T.-Y.
-        <span class="publication-title">
-          Ultimate strength evaluation of Kuroshio current turbine blades.
-        </span>
-        <span class="publication-journal">
-          Proceedings of the International Offshore and Polar Engineering Conference.
-        </span>
-      </div>
-    </div>
-
-  </div>
-
-</div>
 
     <!-- Projects -->
 
